@@ -15,7 +15,7 @@ function Home() {
         <h3 
        className='text-6xl font1'>
         <span className='text-emerald-500'>
-        Hii, there
+        Hii, 
         </span>
         </h3>
         
