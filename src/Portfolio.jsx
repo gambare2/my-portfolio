@@ -78,10 +78,13 @@ function Portfolio() {
 
 
   const drawer = (
-    <div>
-      <Toolbar />
+    <div style={{backgroundColor: '#181818'}}>
+     
+      <Toolbar  />
       <Divider />
-      <List>
+      <List
+      sx={{height: '100vh',
+      }} >
         <Link to='/view_image'
           className=''>
           <img
@@ -93,28 +96,29 @@ function Portfolio() {
         </Link>
 
         {navitems.map(({ segment, title, icon, path }) => (
+        
           <ListItem
             key={title}
             component={NavLink}
             to={path}
             className={({ isActive }) => (isActive ? 'active' : '')}
             sx={{
-              color: 'black',
-              backgroundColor: 'white',
+              color: 'white',
+              backgroundColor: '#303030',
               fontFamily: 'Poetsen On, sans-serif',
               fontWeight: 'bold',
               fontStyle: 'normal',
               display: 'flex',
               alignItems: 'center',
               '&:hover': {
-                backgroundColor: '#673ab7',
+                backgroundColor: '#232323',
                 color: 'white',
                 '& .MuiListItemIcon-root': {
                   color: 'white',
                 },
               },
               '&.active': {
-                backgroundColor: '#6a7282',
+                backgroundColor: ' #181818',
                 color: 'white',
                 boxShadow: 'inset 0px 2px 41px -5px rgba(0,0,0,0.81)',
                 WebkitBoxShadow: 'inset 0px 2px 41px -5px rgba(0,0,0,0.81)',
@@ -137,10 +141,12 @@ function Portfolio() {
               }}
             />
           </ListItem>
+          
         ))}
 
 
       </List>
+
     </div >
   );
 
@@ -151,7 +157,7 @@ function Portfolio() {
           position="fixed"
           sx={{
             zIndex: (theme) => theme.zIndex.drawer + 1,
-            backgroundImage: 'linear-gradient(to right,  #ffffff 50%, #111827 50%, #111827 100%)',
+            backgroundImage: 'linear-gradient(to right, #181818  50%, #111827 50%, #111827 100%)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             display: 'flex',
