@@ -55,48 +55,35 @@ const navitems = [
 
 
 function Portfolio() {
-
   const location = useLocation();
   const [currenttitle, setCurrenttitle] = useState('My Portfolio');
+  const [mobileopen, setMobileopen] = useState(false);
 
+  //  current title
   useEffect(() => {
     const match = navitems.find(item => item.path === location.pathname);
-    setCurrenttitle(match?.title || 'Profile')
+    setCurrenttitle(match?.title || 'Profile');
+  }, [location.pathname]);
 
-  })
+  //  mobile drawer
+  const togglebar = () => setMobileopen(!mobileopen);
 
-
-  const [mobileopen, setMobileopen] = useState(false);
-  const togglebar = () =>
-    setMobileopen(!mobileopen);
-
-
-
-
-
-
-
-
+  // Drawer content
   const drawer = (
-    <div style={{backgroundColor: '#181818'}}>
-     
-      <Toolbar  />
+    <div style={{ backgroundColor: '#181818', height: '100%' }}>
+      <Toolbar />
       <Divider />
-      <List
-      sx={{height: '100vh',
-      }} >
-        <Link to='/view_image'
-          className=''>
+      <List>
+        <Link to='/view_image'>
           <img
             src="profile_pic.jpg"
             alt="404 Not Found"
-            className='size-40 md:mt-5 cursor-pointer box-shadow border-2 border-gray-500'
+            className='size-40 md:mt-5 cursor-pointer border-2 border-gray-500'
           />
           <span className='font4 text-teal-500 text-3xl md:ml-4'>Prince Aryan Singh</span>
         </Link>
 
-        {navitems.map(({ segment, title, icon, path }) => (
-        
+        {navitems.map(({ title, icon, path }) => (
           <ListItem
             key={title}
             component={NavLink}
@@ -107,25 +94,12 @@ function Portfolio() {
               backgroundColor: '#303030',
               fontFamily: 'Poetsen On, sans-serif',
               fontWeight: 'bold',
-              fontStyle: 'normal',
-              display: 'flex',
-              alignItems: 'center',
               '&:hover': {
                 backgroundColor: '#232323',
-                color: 'white',
-                '& .MuiListItemIcon-root': {
-                  color: 'white',
-                },
               },
               '&.active': {
-                backgroundColor: ' #181818',
-                color: 'white',
+                backgroundColor: '#181818',
                 boxShadow: 'inset 0px 2px 41px -5px rgba(0,0,0,0.81)',
-                WebkitBoxShadow: 'inset 0px 2px 41px -5px rgba(0,0,0,0.81)',
-                MozBoxShadow: 'inset 0px 2px 41px -5px rgba(0,0,0,0.81)',
-                '& .MuiListItemIcon-root': {
-                  color: 'white',
-                },
               },
             }}
           >
@@ -134,87 +108,104 @@ function Portfolio() {
             </ListItemIcon>
             <ListItemText
               primary={title}
-              sx={{
-                '& .MuiTypography-root': {
-                  color: 'inherit',
-                },
-              }}
+              sx={{ '& .MuiTypography-root': { color: 'inherit' } }}
             />
           </ListItem>
-          
         ))}
-
-
       </List>
-
-    </div >
+    </div>
   );
 
   return (
     <>
-      <div>
-        <AppBar
-          position="fixed"
-          sx={{
-            zIndex: (theme) => theme.zIndex.drawer + 1,
-            backgroundImage: 'linear-gradient(to right, #181818  50%, #111827 50%, #111827 100%)',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-evenly'
-          }}
-        >
 
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              edge="start"
-              onClick={togglebar}
-              sx={{ mr: 4, display: { sm: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{
-                color: '#673ab7',
-                display: 'flex',
-                justifyContent: 'space-around',
-                fontSize: 20,
-                fontFamily: 'Henny Penny, system-ui',
-                fontWeight: 'bold',
-                fontStyle: 'normal',
-              }} >
-              {currenttitle}
-
-            </Typography>
-          </Toolbar>
-          <span
-            className='font1 text-2xl md:mt-4'>
-            Prince Aryan Singh
-          </span>
-        </AppBar>
-      </div >
-      <Drawer
-        variant='permanent'
+      <AppBar
+        position="fixed"
         sx={{
-          display: { xs: 'none', md: 'block' },
-          width: drawerwidth,
-          [`& .MuiDrawer-paper`]: { width: drawerwidth, boxSizing: 'border-box' },
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          backgroundImage: 'linear-gradient(to right, #181818  50%, #111827 50%, #111827 100%)',
         }}
-        open>
+      >
+        <Toolbar>
+
+          <IconButton
+            color="inherit"
+            edge="start"
+            onClick={togglebar}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+            noWrap
+            sx={{
+              color: '#673ab7',
+              fontFamily: 'Henny Penny, system-ui',
+              fontWeight: 'bold',
+              fontSize: 20,
+              flexGrow: 1,
+            }}
+          >
+            {currenttitle}
+          </Typography>
+          <Typography
+            sx={{
+              display: 'flex',
+              justifyContent: 'start',
+              alignItems: 'centre ',
+              gap: 2,
+              fontFamily: 'sans-serif'
+            }}
+            className="font1 text-2xl"
+          >
+            Prince Aryan Singh
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+
+      <Drawer
+        variant="temporary"
+        open={mobileopen}
+        onClose={togglebar}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          '& .MuiDrawer-paper': { width: drawerwidth },
+        }}
+      >
         {drawer}
       </Drawer>
-      <Box component="main" sx={{ p: 3, mt: 8, ml: `${drawerwidth}px` }}>
+
+
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: 'none', md: 'block' },
+          '& .MuiDrawer-paper': {
+            width: drawerwidth,
+            boxSizing: 'border-box',
+          },
+        }}
+        open
+      >
+        {drawer}
+      </Drawer>
+
+
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          mt: 8,
+          ml: { md: `${drawerwidth}px` }, // Only shift on desktop
+        }}
+      >
         <Outlet />
       </Box>
-
-
     </>
-  )
+  );
 }
-
 export default Portfolio

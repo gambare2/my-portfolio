@@ -23,33 +23,37 @@ const certifyDrive = [
   }
 ]
 
-function certificate() {
-   const openPDF = (fileid) => {
+function Certificate() {
+  const openPDF = (fileid) => {
     window.open(`https://drive.google.com/file/d/${fileid}/view`, '_self');
   };
+
   return (
-    <div className='flex flex-row gap-3'>
+    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {certifyDrive.map(({ fileid, name, date, course }, index) => (
-        <div className='overflow-hidden cursor-pointer md:px-4 md:py-3 bg-teal-200 text-slate-800'
-        key={index}
-        onClick={()=> openPDF(fileid)}>
-      <object
-      
-      data={`https://drive.google.com/file/d/${fileid}/preview?rm=minimal`}
-      type='application/pdf'
-      >
-        
-      </object>
-      <div className='text-sm text-slate-800 flex flex-col'>
-        <span 
-      className='text-2xl font1 text-center'>{name}</span>
-      <span>Date: {date}</span>
-      <span>By: {course}</span>
-      </div>
-    </div>
+        <div
+          key={index}
+          onClick={() => openPDF(fileid)}
+          className="cursor-pointer bg-teal-100 hover:bg-teal-200 transition-shadow rounded-xl shadow-md overflow-hidden flex flex-col"
+        >
+          <div className="aspect-video">
+            <object
+              data={`https://drive.google.com/file/d/${fileid}/preview?rm=minimal`}
+              type="application/pdf"
+              className="w-full h-full"
+            />
+          </div>
+
+          <div className="p-4 text-slate-800 space-y-1">
+            <h3 className="text-xl font-bold text-center">{name}</h3>
+            <p className="text-sm">📅 Date: {date}</p>
+            <p className="text-sm">🎓 Course: {course}</p>
+          </div>
+        </div>
       ))}
     </div>
-  )
+  );
 }
 
-export default certificate
+
+export default Certificate
