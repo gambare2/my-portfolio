@@ -63,11 +63,9 @@ function About() {
           <p>📍 Location: Agra, India</p>
           <p>
             📧 Reach me at:{' '}
-            <a href="mailto:sprincearyan384@gmail.com" className="text-blue-400 hover:underline">
-              sprincearyan384@gmail.com
-            </a>
+            
           </p>
-          <p>📞 Phone: +91-6207535637</p>
+          <p>Available in 📞contact section </p>
         </div>
         <img src="profile_pic.jpg" alt="Profile"
           className='size-40' />
