@@ -6,10 +6,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import InfoIcon from '@mui/icons-material/Info';
-import FolderIcon from '@mui/icons-material/Folder';
-import ContactPageIcon from '@mui/icons-material/ContactPage';
 import MenuIcon from '@mui/icons-material/Menu';
 import './Font.css'
 import { useEffect, useState } from 'react';
@@ -17,7 +13,6 @@ import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
-import View from './assets/View';
 
 
 const drawerwidth = '240';
@@ -26,26 +21,32 @@ const navitems = [
   {
     segment: 'dashboard',
     title: 'PORTFOLIO',
-    icon: <DashboardIcon />,
+    icon: <img src="dashboard.svg" alt="folderIcon" className='size-5' />,
     path: '/'
   },
   {
     segment: 'About',
     title: 'ABOUT',
-    icon: <InfoIcon />,
+    icon: <img src="infoIcon.svg" alt="folderIcon" className='size-5' />,
     path: '/about'
   },
   {
     segment: 'certify',
     title: 'CERTIFICATE',
-    icon: <FolderIcon />,
+    icon: <img src="certificate.svg" alt="" className='size-5' />,
     path: '/certif'
   },
   {
     segment: 'Contact',
     title: 'CONTACT',
-    icon: <ContactPageIcon />,
+    icon: <img src="contactPage.svg" alt="folderIcon" className='size-5' />,
     path: '/contact'
+  },
+  {
+    segment: 'Projects',
+    title: 'PROJECTS',
+    icon: <img src="folderIcon.svg" alt="" className='size-5' />,
+    path: '/project'
   }
 
 ];
@@ -80,7 +81,7 @@ function Portfolio() {
             alt="404 Not Found"
             className='size-40 md:mt-5 cursor-pointer border-2 border-gray-500'
           />
-          <span className='font4 text-teal-500 text-3xl md:ml-4'>Prince Aryan Singh</span>
+          <span className='font4 text-teal-500 text-3xl md:ml-4'> Prince Aryan Singh</span>
         </Link>
 
         {navitems.map(({ title, icon, path }) => (
@@ -159,7 +160,7 @@ function Portfolio() {
             }}
             className="font1 text-2xl"
           >
-            Prince Aryan Singh
+             <input type="image" src="profile_pic.jpg" alt="" className='size-8 rounded-full' formTarget='_blank' /> Prince Aryan Singh
           </Typography>
         </Toolbar>
       </AppBar>
