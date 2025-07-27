@@ -11,3 +11,29 @@
     -webkit-box-shadow: 0px -4px 52px 10px rgba(0,0,0,0.4);
     -moz-box-shadow: 0px -4px 52px 10px rgba(0,0,0,0.4);
 }
+.font1{
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .font2{
+    font-family: "Yesteryear", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .font3{
+    font-family: "Henny Penny", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .font4{
+   font-family: "Road Rage", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .font5{
+    font-family: "Kaushan Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  

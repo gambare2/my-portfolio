@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../src/font.css';
 
 const project = [
   {
