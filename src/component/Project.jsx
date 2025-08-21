@@ -75,14 +75,12 @@ function Project() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
         {project.map((project, index) => (
-          <div
-            key={index}
-            className="flex flex-col gap-4 border-2 border-slate-400 rounded-md p-4 shadow-md hover:shadow-lg transition-all duration-300 about-shadow"
-          >
-            <img src={project.image} alt={project.name} className="w-16 h-16 mx-auto" />
-
-            <div className="flex flex-col gap-2">
-              <div className="flex justify-between items-center">
+        <div 
+        className='flex flex-row gap-3 border-2 border-slate-400 rounded-md p-4 shadow-md hover:shadow-lg transition-all duration-300 about-shadow'>
+          <img src={project.image} alt={project.name} className="w-full h-full mx-auto" />
+          <div>
+           <div className="flex flex-col gap-2">
+             <div className="flex justify-between items-center">
                 <span className="font1 text-xl sm:text-2xl">{project.name}</span>
                 <a
                   href={project.link}
@@ -105,8 +103,9 @@ function Project() {
                 </div>
                 <span className="whitespace-nowrap">📅 {project.date}</span>
               </div>
-            </div>
+              </div>
           </div>
+        </div>
         ))}
       </div>
     </div>
