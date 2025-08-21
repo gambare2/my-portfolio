@@ -5,7 +5,7 @@ const project = [
     name: 'note-saver',
     description:
       'A note-taking app built with React and react-router. You can save delete and edit your notes.',
-    image: 'add.png',
+    image: 'add.jpg',
     link: 'https://github.com/gambare2/notes-manager',
     tech: ['React, ', 'React Router, ', 'Tailwind CSS'],
     date: '22-05-2025',
@@ -17,7 +17,7 @@ const project = [
     name: 'Login Page',
     description:
       'A Register page built to show case my skills in frontend and backend. You can login via email or google account by using firebase authentication.',
-    image: 'add.png',
+    image: 'login-background.jpg',
     link: 'https://github.com/gambare2/fullstack-login',
     tech: ['React, ', 'Tailwind CSS, ', 'Node.js, ', 'Express, ', 'MongoDB'],
     date: '29-05-2025',
@@ -29,7 +29,7 @@ const project = [
     name: 'Register Page',
     description:
       'A Register page built to show case my skills in frontend and backend. You can register via email or google account.',
-    image: 'add.png',
+    image: 'login-background.jpg',
     link: 'https://github.com/gambare2/fullstack-register',
     tech: [
       'React, ',
@@ -44,6 +44,26 @@ const project = [
     isFeatured: true,
     isNew: true,
   },
+  {
+
+    name: 'Pri tube',
+    description:
+      'A music website that uses jamendo api to fetch artist and tracks. It is developed for practise purpose and for user and admin panel.',
+    image: 'music-background.jpg',
+    link: 'https://music-tube.vercel.app/',
+    tech: [
+      'React, ',
+      'Tailwind CSS, ',
+      'Node.js, ',
+      'Express, ',
+      'MongoDB, ',
+      'firebase',
+    ],
+    date: '15-07-2025',
+    category: 'Web Development',
+    isFeatured: true,
+    isNew: true,
+  }
 ];
 
 function Project() {
