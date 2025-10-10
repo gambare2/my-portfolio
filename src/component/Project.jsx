@@ -1,116 +1,120 @@
-import React from 'react';
-
-const project = [
-  {
-    name: 'note-saver',
-    description:
-      'A note-taking app built with React and react-router. You can save delete and edit your notes.',
-    image: 'add.jpg',
-    link: 'https://github.com/gambare2/notes-manager',
-    tech: ['React, ', 'React Router, ', 'Tailwind CSS'],
-    date: '22-05-2025',
-    category: 'Web Development',
-    isFeatured: true,
-    isNew: true,
-  },
-  {
-    name: 'Login Page',
-    description:
-      'A Register page built to show case my skills in frontend and backend. You can login via email or google account by using firebase authentication.',
-    image: 'login-background.jpg',
-    link: 'https://github.com/gambare2/fullstack-login',
-    tech: ['React, ', 'Tailwind CSS, ', 'Node.js, ', 'Express, ', 'MongoDB'],
-    date: '29-05-2025',
-    category: 'Web Development',
-    isFeatured: true,
-    isNew: true,
-  },
-  {
-    name: 'Register Page',
-    description:
-      'A Register page built to show case my skills in frontend and backend. You can register via email or google account.',
-    image: 'login-background.jpg',
-    link: 'https://github.com/gambare2/fullstack-register',
-    tech: [
-      'React, ',
-      'Tailwind CSS, ',
-      'Node.js, ',
-      'Express, ',
-      'MongoDB, ',
-      'firebase',
-    ],
-    date: '01-06-2025',
-    category: 'Web Development',
-    isFeatured: true,
-    isNew: true,
-  },
-  {
-
-    name: 'Pri tube',
-    description:
-      'A music website that uses jamendo api to fetch artist and tracks. It is developed for practise purpose and for user and admin panel.',
-    image: 'music-background.jpg',
-    link: 'https://music-tube.vercel.app/',
-    tech: [
-      'React, ',
-      'Tailwind CSS, ',
-      'Node.js, ',
-      'Express, ',
-      'MongoDB, ',
-      'firebase',
-    ],
-    date: '15-07-2025',
-    category: 'Web Development',
-    isFeatured: true,
-    isNew: true,
-  }
-];
+import React from "react";
+import projects from "../data/project.json";
+import {
+  Box,
+  Grid,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Typography,
+  Chip,
+  Stack,
+} from "@mui/material";
 
 function Project() {
   return (
-    <div className="px-4 py-10">
-      <h1 className="text-4xl font-bold text-center text-slate-400 font1 border-b-2 border-slate-400 w-fit px-4 mx-auto mb-10">
+    <Box sx={{ px: { xs: 2, md: 6 }, py: 8 }}>
+      <Typography
+        variant="h3"
+        align="center"
+        sx={{
+          mb: 6,
+          fontWeight: "bold",
+          color: "text.secondary",
+          borderBottom: "3px solid",
+          borderColor: "text.secondary",
+          display: "inline-block",
+          px: 3,
+        }}
+      >
         Projects
-      </h1>
+      </Typography>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-        {project.map((project, index) => (
-        <div 
-        className='flex flex-row gap-3 border-2 border-slate-400 rounded-md p-4 shadow-md hover:shadow-lg transition-all duration-300 about-shadow'>
-          <img src={project.image} alt={project.name} className="w-full h-full mx-auto" />
-          <div>
-           <div className="flex flex-col gap-2">
-             <div className="flex justify-between items-center">
-                <span className="font1 text-xl sm:text-2xl">{project.name}</span>
-                <a
+      <Grid container spacing={4} maxWidth="lg" mx="auto">
+        {projects.length > 0 ? (
+          projects.map((project, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card
+                sx={{
+                  height: "100%",
+                  borderRadius: 3,
+                  boxShadow: 4,
+                  transition: "all 0.3s ease",
+                  "&:hover": { boxShadow: 8, transform: "translateY(-5px)" },
+                }}
+              >
+                <CardActionArea
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-teal-500 hover:text-teal-600 active:text-teal-700 underline text-sm"
+                  sx={{ height: "100%" }}
                 >
-                  Link
-                </a>
-              </div>
-
-              <p className="text-cyan-700 text-sm sm:text-base font-light">
-                {project.description}
-              </p>
-
-              <div className="flex justify-between items-center flex-wrap text-sm text-gray-600">
-                <div className="flex items-start gap-2 flex-wrap">
-                  <img src="tech.svg" alt="tech" className="w-4 h-4 mt-1" />
-                  <span>{project.tech}</span>
-                </div>
-                <span className="whitespace-nowrap">📅 {project.date}</span>
-              </div>
-              </div>
-          </div>
-        </div>
-        ))}
-      </div>
-    </div>
+                  <CardMedia
+                    component="img"
+                    image={project.image}
+                    alt={project.name}
+                    sx={{
+                      height: 180,
+                      objectFit: "cover",
+                      borderTopLeftRadius: 12,
+                      borderTopRightRadius: 12,
+                    }}
+                  />
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="div"
+                      sx={{ fontWeight: "bold" }}
+                    >
+                      {project.name}
+                    </Typography>
+                    {project.description && (
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ mb: 2 }}
+                      >
+                        {project.description}
+                      </Typography>
+                    )}
+                    <Stack
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                      spacing={1}
+                      flexWrap="wrap"
+                    >
+                      <Chip
+                        label={`Framework: ${project.framework}`}
+                        size="small"
+                        color="primary"
+                        variant="outlined"
+                      />
+                      <Typography
+                        variant="caption"
+                        color="text.secondary"
+                        sx={{ fontStyle: "italic" }}
+                      >
+                        📅 {project.createdAt}
+                      </Typography>
+                    </Stack>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))
+        ) : (
+          <Grid item xs={12}>
+            <Typography align="center" color="text.secondary" variant="body1">
+              No projects found.
+            </Typography>
+          </Grid>
+        )}
+      </Grid>
+    </Box>
   );
 }
 
 export default Project;
-

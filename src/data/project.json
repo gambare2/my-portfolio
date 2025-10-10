@@ -1,0 +1,58 @@
+[
+  {
+    "name": "taskmanagement",
+    "link": "https://taskmanagement-eight-chi.vercel.app",
+    "framework": "vite",
+    "createdAt": "10/10/2025",
+    "image": "/project-images/taskmanagement.png"
+  },
+  {
+    "name": "notes_taker",
+    "link": "https://notestaker-six.vercel.app",
+    "framework": "vite",
+    "createdAt": "10/7/2025",
+    "image": "/project-images/notes_taker.png"
+  },
+  {
+    "name": "archvid",
+    "link": "https://archvid.vercel.app",
+    "framework": "vite",
+    "createdAt": "6/9/2025",
+    "image": "/project-images/archvid.png"
+  },
+  {
+    "name": "music-tube",
+    "link": "https://music-tube.vercel.app",
+    "framework": "vite",
+    "createdAt": "2/8/2025",
+    "image": "/project-images/music-tube.png"
+  },
+  {
+    "name": "arch-sell",
+    "link": "https://arch-sell.vercel.app",
+    "framework": "vite",
+    "createdAt": "1/10/2025",
+    "image": "/project-images/arch-sell.png"
+  },
+  {
+    "name": "admin-page",
+    "link": "https://admin-page.vercel.app",
+    "framework": "vite",
+    "createdAt": "15/9/2025",
+    "image": "/project-images/admin-page.png"
+  },
+  {
+    "name": "my-portfolio",
+    "link": "https://my-portfolio-eight-beta-86.vercel.app",
+    "framework": "vite",
+    "createdAt": "27/6/2025",
+    "image": "/project-images/my-portfolio.png"
+  },
+  {
+    "name": "avaitor-education",
+    "link": "https://avaitor-education.vercel.app",
+    "framework": "vite",
+    "createdAt": "11/8/2025",
+    "image": "/project-images/avaitor-education.png"
+  }
+]

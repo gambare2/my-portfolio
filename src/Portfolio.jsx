@@ -37,12 +37,6 @@ const navitems = [
     path: '/certif'
   },
   {
-    segment: 'Contact',
-    title: 'CONTACT',
-    icon: <img src="contactPage.svg" alt="folderIcon" className='size-5' />,
-    path: '/contact'
-  },
-  {
     segment: 'Projects',
     title: 'PROJECTS',
     icon: <img src="folderIcon.svg" alt="" className='size-5' />,
