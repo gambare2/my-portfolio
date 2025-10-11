@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Grid, Card, CardActionArea, CardContent, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { motion } from "framer-motion";
 
 const certifyDrive = [
@@ -30,17 +38,42 @@ const cardVariants = {
     y: 0,
     transition: { delay: i * 0.15, duration: 0.5 },
   }),
-  hover: { scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" },
+  hover: { scale: 1.03 },
 };
 
 function Certificate() {
+  const theme = useTheme();
+
   const openPDF = (fileid) => {
     window.open(`https://drive.google.com/file/d/${fileid}/view`, "_blank");
   };
 
   return (
-    <Box sx={{ px: { xs: 2, md: 6 }, py: 6 }}>
-      <Grid container spacing={4}>
+    <Box
+      sx={{
+        px: { xs: 2, md: 6 },
+        py: 6,
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        transition: "background-color 0.3s ease, color 0.3s ease",
+      }}
+    >
+      <Typography
+        variant="h4"
+        align="center"
+        fontWeight="bold"
+        sx={{
+          mb: 5,
+          color: theme.palette.text.primary,
+          borderBottom: `3px solid ${theme.palette.primary.main}`,
+          display: "inline-block",
+          px: 3,
+        }}
+      >
+        📜 Certificates
+      </Typography>
+
+      <Grid container spacing={4} justifyContent="center">
         {certifyDrive.map(({ fileid, name, date, course }, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <motion.div
@@ -55,6 +88,21 @@ function Certificate() {
                   cursor: "pointer",
                   borderRadius: 3,
                   overflow: "hidden",
+                  bgcolor:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.background.paper
+                      : "#ffffff",
+                  boxShadow:
+                    theme.palette.mode === "dark"
+                      ? "0 4px 20px rgba(255,255,255,0.05)"
+                      : "0 4px 20px rgba(0,0,0,0.1)",
+                  "&:hover": {
+                    boxShadow:
+                      theme.palette.mode === "dark"
+                        ? "0 8px 24px rgba(255,255,255,0.1)"
+                        : "0 8px 24px rgba(0,0,0,0.15)",
+                  },
+                  transition: "all 0.3s ease",
                 }}
                 onClick={() => openPDF(fileid)}
               >
@@ -67,6 +115,8 @@ function Certificate() {
                       width: "100%",
                       height: 200,
                       border: "none",
+                      backgroundColor:
+                        theme.palette.mode === "dark" ? "#111" : "#f0f0f0",
                     }}
                   />
 
@@ -75,14 +125,25 @@ function Certificate() {
                     <Typography
                       variant="h6"
                       component="h3"
-                      sx={{ fontWeight: "bold", mb: 1, textAlign: "center" }}
+                      sx={{
+                        fontWeight: "bold",
+                        mb: 1,
+                        textAlign: "center",
+                        color: theme.palette.text.primary,
+                      }}
                     >
                       {name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography
+                      variant="body2"
+                      sx={{ color: theme.palette.text.secondary }}
+                    >
                       📅 Date: {date}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography
+                      variant="body2"
+                      sx={{ color: theme.palette.text.secondary }}
+                    >
                       🎓 Course: {course}
                     </Typography>
                   </CardContent>
