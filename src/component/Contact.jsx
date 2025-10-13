@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Box, Avatar } from "@mui/material";
+import { Box, Avatar, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
+import { IoIosContacts } from "react-icons/io";
 
 const contactCard = [
   { link: "https://www.instagram.com/thakur_aryan864/", name: "Instagram", logo: "instagram.svg" },
@@ -13,9 +14,8 @@ const contactCard = [
 
 export default function ContactOrbitLeft() {
   const [active, setActive] = useState(false);
-  const radius = 130; // distance from center
-
-  const openContact = (link) => window.open(link, "_blank");
+  const theme = useTheme();
+  const radius = 120; 
 
   return (
     <Box
@@ -31,14 +31,14 @@ export default function ContactOrbitLeft() {
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
     >
-      {/* Central circle */}
+      {/* Central Circle */}
       <motion.div
         whileTap={{ scale: 0.95 }}
         style={{
-          width: 90,
-          height: 90,
+          width: 50,
+          height: 50,
           borderRadius: "50%",
-          backgroundColor: "#2563eb",
+          backgroundColor: theme.palette.primary.main,
           color: "#fff",
           display: "flex",
           justifyContent: "center",
@@ -46,12 +46,14 @@ export default function ContactOrbitLeft() {
           fontWeight: 600,
           fontSize: 15,
           cursor: "pointer",
-          boxShadow: "0px 8px 20px rgba(0,0,0,0.3)",
+          boxShadow: theme.palette.mode === "dark"
+            ? "0px 8px 25px rgba(0,0,0,0.4)"
+            : "0px 8px 25px rgba(0,0,0,0.2)",
           position: "relative",
           zIndex: 5,
         }}
       >
-        Contacts
+        <IoIosContacts className="w-8 h-8"/>
       </motion.div>
 
       {/* Contact icons on left arc */}
@@ -96,54 +98,66 @@ export default function ContactOrbitLeft() {
                 left: -Math.abs(x) + 40,
                 transform: "translateY(-50%)",
                 height: 2,
-                backgroundColor: "#2563eb",
+                backgroundColor: theme.palette.primary.main,
                 zIndex: 0,
               }}
             />
-
+              
             {/* Contact bubble */}
-            <motion.div
-              whileHover={{ scale: 1.2 }}
-              onClick={() => openContact(contact.link)}
-              style={{
-                cursor: "pointer",
-                position: "relative",
-                zIndex: 2,
-              }}
+            <a
+              href={contact.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
             >
-              <Avatar
-                src={contact.logo}
-                alt={contact.name}
-                sx={{
-                  width: 40,
-                  height: 40,
-                  backgroundColor: "#fff",
-                  border: "2px solid #2563eb",
-                  boxShadow: "0px 3px 10px rgba(0,0,0,0.2)",
-                }}
-              />
-
-              {/* Tooltip on hover */}
               <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                whileHover={{ opacity: 1, x: -25 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ scale: 1.2 }}
                 style={{
-                  position: "absolute",
-                  left: -70,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  background: "#1e293b",
-                  color: "#fff",
-                  padding: "3px 8px",
-                  borderRadius: 6,
-                  fontSize: "0.7rem",
-                  whiteSpace: "nowrap",
+                  cursor: "pointer",
+                  position: "relative",
+                  zIndex: 2,
                 }}
               >
-                {contact.name}
+                <Avatar
+                  src={contact.logo}
+                  alt={contact.name}
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor:
+                      theme.palette.mode === "dark" ? "#1e293b" : "#fff",
+                    border: `2px solid ${theme.palette.primary.main}`,
+                    boxShadow:
+                      theme.palette.mode === "dark"
+                        ? "0px 3px 10px rgba(255,255,255,0.2)"
+                        : "0px 3px 10px rgba(0,0,0,0.2)",
+                  }}
+                />
+
+                {/* Tooltip on hover */}
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  whileHover={{ opacity: 1, x: -25 }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    position: "absolute",
+                    left: -70,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    background:
+                      theme.palette.mode === "dark" ? "#1e293b" : "#2563eb",
+                    color: "#fff",
+                    padding: "3px 8px",
+                    borderRadius: 6,
+                    fontSize: "0.7rem",
+                    whiteSpace: "nowrap",
+                    pointerEvents: "none",
+                  }}
+                >
+                  {contact.name}
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </a>
           </motion.div>
         );
       })}

@@ -1,18 +1,20 @@
-import React from "react";
 import {
   Box,
   Grid,
   Typography,
   Divider,
   Stack,
-  Avatar,
   useTheme,
   Card,
   CardContent,
-  List,
-  ListItem,
 } from "@mui/material";
 import { motion } from "framer-motion";
+import Contact from "./Contact";
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
 
 const techstacks = [
   { name: "JavaScript", color: "F7DF1E", logo: "javascript" },
@@ -66,7 +68,7 @@ function About() {
             sx={{
               display: "flex",
               alignItems: "center",
-              flexWrap: "wrap", // makes it responsive
+              flexWrap: "wrap",
               gap: 1,
             }}
           >
@@ -109,7 +111,7 @@ function About() {
           </Typography>
 
           <Typography variant="h6" color="text.secondary" gutterBottom>
-            💻 Full Stack Developer | 📍 India
+            💻 Full Stack Developer | 📍 Uttar Pradesh, India
           </Typography>
 
           <Typography variant="body1" color="text.secondary" paragraph>
@@ -157,7 +159,9 @@ function About() {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            gap: 3,
+            gap: 5,
+            cursor: "pointer"
+
           }}
         >
           {[
@@ -179,6 +183,7 @@ function About() {
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
+              whileHover={{ scale: 1.1 }}
               viewport={{ once: true }}
               style={{
                 flex: "1 1 350px", // min width per card, expands evenly
@@ -223,7 +228,7 @@ function About() {
         <Divider sx={{ width: 120, mx: "auto", mb: 4, borderColor: "primary.main" }} />
         <Typography align="center" color="text.secondary" variant="h6">
           B.E. in Computer Science & Engineering —{" "}
-          <strong>Institute Of Engineering, Agra</strong>
+          <strong>Institute Of Engineering and Technology, Agra</strong>
         </Typography>
         <Typography align="center" color="text.secondary" variant="h6">
           AI/ML Course  —{" "}
@@ -306,6 +311,15 @@ function About() {
         </a>{" "}
         ⭐
       </Typography>
+      <motion.div
+        className="fixed bottom-0 right-0"
+        variants={itemVariants}
+        initial={{ opacity: 0, x: 50, y: 50 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <Contact />
+      </motion.div>
     </Box>
   );
 }

@@ -50,12 +50,14 @@ const chipsData = [
   { label: "React.js", color: "info", variant: "filled" },
   { label: "React Native", color: "secondary", variant: "filled" },
   { label: "Material UI", color: "error", variant: "filled" },
-  { label: "Zustand", color: "default", variant: "filled", sx: { color: "white" } },
+  { label: "Zustand", color: "default", variant: "filled"},
   { label: "Express", color: "success", variant: "outlined" },
   { label: "Firebase", color: "warning", variant: "outlined" },
   { label: "Tailwind CSS", color: "info", variant: "outlined" },
   { label: "MongoDB", color: "success", variant: "outlined" },
   { label: "Next.js", color: "primary", variant: "outlined" },
+  { label: "Git", color: "secondary", variant: "outlined"},
+  { label: "GitHub", color: "default", variant: "outlined"},
 ];
 
 export default function Home() {
@@ -152,7 +154,8 @@ export default function Home() {
                 flexWrap="wrap"
                 justifyContent={{ xs: "center", md: "flex-start" }}
                 gap={1.5}
-                sx={{ mb: 4 }}
+                sx={{ mb: 4 , cursor: "pointer"}}
+                
               >
                 {chipsData.map((chip, index) => {
                   const isHovered = hoveredIndex === index;
@@ -220,6 +223,7 @@ export default function Home() {
                 >
                   View My Projects 🚀
                 </Button>
+                
               </div>
             </motion.div>
           </Grid>

@@ -12,6 +12,7 @@ import {
   Stack,
   useTheme,
 } from "@mui/material";
+import Contact from "./Contact";
 
 // Parent container animation (controls staggering)
 const containerVariants = {
@@ -37,6 +38,11 @@ const cardVariants = {
       damping: 12,
     },
   },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
 function Project() {
@@ -183,6 +189,15 @@ function Project() {
             </Grid>
           )}
         </Grid>
+      </motion.div>
+      <motion.div
+        className="fixed bottom-0 right-0"
+        variants={itemVariants}
+        initial={{ opacity: 0, x: 50, y: 50 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <Contact />
       </motion.div>
     </Box>
   );

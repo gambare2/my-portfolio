@@ -1,4 +1,4 @@
-import React from "react";
+import Contact from "./Contact";
 import {
   Box,
   Grid,
@@ -9,6 +9,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
+
 
 const certifyDrive = [
   {
@@ -39,6 +40,11 @@ const cardVariants = {
     transition: { delay: i * 0.15, duration: 0.5 },
   }),
   hover: { scale: 1.03 },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
 function Certificate() {
@@ -153,6 +159,15 @@ function Certificate() {
           </Grid>
         ))}
       </Grid>
+      <motion.div
+        className="fixed bottom-0 right-0"
+        variants={itemVariants}
+        initial={{ opacity: 0, x: 50, y: 50 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <Contact />
+      </motion.div>
     </Box>
   );
 }
