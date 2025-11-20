@@ -7,6 +7,27 @@
     "image": "/project-images/taskmanagement.png"
   },
   {
+    "name": "Study Center Management",
+    "link": "https://my-library-pink-psi.vercel.app",
+    "framework": "NextJS",
+    "createdAt": "On-going",
+    "image": "/project-images/Study-center-management.png"
+  },
+  {
+    "name": "Sunmayo Admin Panel",
+    "link": "https://admin-page-blond.vercel.app",
+    "framework": "NextJS",
+    "createdAt": "10/10/2025",
+    "image": "/project-images/image.png"
+  },
+  {
+    "name": "Adsource Pdf Resources",
+    "link": "https://adsource-panel-iota.vercel.app",
+    "framework": "NextJS",
+    "createdAt": "01/11/2025",
+    "image": "/project-images/image2.png"
+  },
+  {
     "name": "notes_taker",
     "link": "https://notestaker-six.vercel.app",
     "framework": "vite",
