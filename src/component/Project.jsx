@@ -88,6 +88,7 @@ function Project() {
                   <Card
                     sx={{
                       height: "100%",
+                      width: 350,
                       borderRadius: 3,
                       bgcolor:
                         theme.palette.mode === "dark"
