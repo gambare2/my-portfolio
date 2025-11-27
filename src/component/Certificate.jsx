@@ -13,6 +13,12 @@ import { motion } from "framer-motion";
 
 const certifyDrive = [
   {
+    fileid: "1JPRMa0HP0Zm4vNMMWaS5Cqxfl2YTkv4f",
+    name: "Python in AI offer letter",
+    date: "On-Going",
+    course: "Edunova Technology",
+  },
+  {
     fileid: "1ECtUr95eL6GNraAjaiFcWbgPaWv_q63r",
     name: "Python Masterclass",
     date: "21-June, 2025",
@@ -30,8 +36,27 @@ const certifyDrive = [
     date: "16-June, 2025",
     course: "Udemy",
   },
+  {
+    fileid: "16EvCd_1Mrk_0wYBYH52Jke2ySlIxNtTT",
+    name: "MySQL Certificate",
+    date: "27-Nov, 2025",
+    course: "Udemy",
+  },
+  {
+    fileid: "1j_YiuLXWivANTSqjeJ9e1smlfVe12xO4",
+    name: "Numpy & Pandas Certificate",
+    date: "27-Nov, 2025",
+    course: "Udemy",
+  },
+  {
+    fileid: "1PDiiLAckUcF3E1DcA2KIxDBLjdKj4nGK",
+    name: "Python with OOPs",
+    date: "27-Nov, 2025",
+    course: "Udemy",
+  }
 ];
 
+// https://drive.google.com/file/d/1JPRMa0HP0Zm4vNMMWaS5Cqxfl2YTkv4f/view?usp=drive_link
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i) => ({

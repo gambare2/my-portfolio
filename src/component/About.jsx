@@ -7,13 +7,49 @@ import {
   useTheme,
   Card,
   CardContent,
+  useMediaQuery,
+  Chip,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import Contact from "./Contact";
+import Project from "./Project";
+import Certificate from "./Certificate";
+import { useState } from "react";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+};
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { delayChildren: 0.2, staggerChildren: 0.2 },
+  },
+};
+
+const containerVariants2 = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // delay between chips
+      delayChildren: 0.4,
+    },
+  },
+};
+
+const chipDropVariants = {
+  hidden: { y: -100, opacity: 0 },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 500,
+      damping: 15, // controls bounce
+    },
+  },
 };
 
 const techstacks = [
@@ -28,6 +64,23 @@ const techstacks = [
   { name: "Git", color: "F05032", logo: "git" },
 ];
 
+const chipsData = [
+  { label: "JavaScript", color: "warning", variant: "filled" },
+  { label: "TypeScript", color: "primary", variant: "filled" },
+  { label: "Node.js", color: "success", variant: "filled" },
+  { label: "React.js", color: "info", variant: "filled" },
+  { label: "React Native", color: "secondary", variant: "filled" },
+  { label: "Material UI", color: "error", variant: "filled" },
+  { label: "Zustand", color: "default", variant: "filled" },
+  { label: "Express", color: "success", variant: "outlined" },
+  { label: "Firebase", color: "warning", variant: "outlined" },
+  { label: "Tailwind CSS", color: "info", variant: "outlined" },
+  { label: "MongoDB", color: "success", variant: "outlined" },
+  { label: "Next.js", color: "primary", variant: "outlined" },
+  { label: "Git", color: "secondary", variant: "outlined" },
+  { label: "GitHub", color: "default", variant: "outlined" },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -38,7 +91,8 @@ const colors = ["#EF4444", "#F59E0B", "#10B981", "#3B82F6", "#8B5CF6"];
 
 function About() {
   const theme = useTheme();
-
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <Box
       sx={{
@@ -60,60 +114,99 @@ function About() {
           animate="visible"
           variants={fadeUp}
         >
-          {/* Combined line for greeting + name */}
-          <Typography
-            variant="h3"
-            fontWeight="bold"
-            gutterBottom
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: 1,
-            }}
-          >
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              style={{ color: "#10B981" }}
+          {/* Combined line for greeting + name for desktop */}
+          {!isMobile && (
+            <Typography
+              variant="h3"
+              fontWeight="bold"
+              gutterBottom
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
             >
-              🚀 Hi, I’m
-            </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                style={{ color: "#10B981" }}
+              >
+                Hi, I’m
+              </motion.span>
 
-            {/* Animated Name */}
-            <motion.span
-              style={{ display: "inline-flex", flexWrap: "wrap" }}
+              {/* Animated Name */}
+              <motion.span
+                style={{ display: "inline-flex", flexWrap: "wrap" }}
+              >
+                {name.split("").map((char, index) => {
+                  const displayChar = char === " " ? "\u00A0" : char;
+                  return (
+                    <motion.span
+                      key={index}
+                      style={{
+                        display: "inline-block",
+                        fontWeight: "bold",
+                        color: colors[index % colors.length],
+                      }}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{
+                        delay: index * 0.06,
+                        type: "spring",
+                        stiffness: 250,
+                      }}
+                    >
+                      {displayChar}
+                    </motion.span>
+                  );
+                })}
+              </motion.span>
+            </Typography>
+          )}
+          {/* Combined line for greeting + name for mobile */}
+          {isMobile && (
+            <Typography
+              variant="h3"
+              fontWeight="bold"
+              gutterBottom
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 1,
+              }}
             >
-              {name.split("").map((char, index) => {
-                const displayChar = char === " " ? "\u00A0" : char;
-                return (
-                  <motion.span
-                    key={index}
-                    style={{
-                      display: "inline-block",
-                      fontWeight: "bold",
-                      color: colors[index % colors.length],
-                    }}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      delay: index * 0.06,
-                      type: "spring",
-                      stiffness: 250,
-                    }}
-                  >
-                    {displayChar}
-                  </motion.span>
-                );
-              })}
-            </motion.span>
-          </Typography>
+              <motion.span
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                style={{ color: "#10B981" }}
+              >
+                Introduction
+              </motion.span>
+            </Typography>
 
+          )}
+          {isMobile && (
+            <div>
+              <Divider
+                sx={{
+                  width: 300,
+                  mx: "auto",
+                  mb: 4,
+                  borderColor: "primary.main",
+                }}
+              />
+            </div>
+          )}
           <Typography variant="h6" color="text.secondary" gutterBottom>
-            💻 Full Stack Developer | 📍 Uttar Pradesh, India
+            💻 Full Stack Developer
           </Typography>
-
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            📍 Uttar Pradesh, India
+          </Typography>
           <Typography variant="body1" color="text.secondary" paragraph>
             A passionate developer who loves building user-friendly, scalable, and creative
             digital experiences. I thrive on transforming ideas into impactful products that
@@ -237,32 +330,64 @@ function About() {
       </Box>
 
       {/* Tech Stack */}
+      {!isMobile &&  (
       <Box sx={{ mt: 10 }}>
         <Typography variant="h4" fontWeight="bold" align="center" gutterBottom>
           🧰 Tech Stack
         </Typography>
-        <Divider sx={{ width: 120, mx: "auto", mb: 4, borderColor: "primary.main" }} />
-        <Stack direction="row" flexWrap="wrap" justifyContent="center" spacing={2}>
-          {techstacks.map((tech) => (
-            <motion.img
-              key={tech.name}
-              src={`https://img.shields.io/badge/-${encodeURIComponent(
-                tech.name
-              )}-${tech.color}?style=flat-square&logo=${tech.logo}&logoColor=white`}
-              alt={tech.name}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              style={{
-                cursor: "pointer",
-                filter:
-                  theme.palette.mode === "light"
-                    ? "drop-shadow(0px 2px 4px rgba(0,0,0,0.1))"
-                    : "drop-shadow(0px 2px 6px rgba(255,255,255,0.1))",
-              }}
-            />
-          ))}
-        </Stack>
+        <Divider sx={{ width: 170, mx: "auto", mb: 4, borderColor: "primary.main" }} />
+        <motion.div
+          variants={containerVariants2}
+          initial="hidden"
+          animate="show"
+          className="flex justify-center"
+        >
+          <Stack
+            direction="row"
+            flexWrap="wrap"
+            justifyContent={{ xs: "center", md: "flex-start" }}
+            gap={1.5}
+            sx={{ mb: 4, cursor: "pointer" }}
+
+          >
+            {chipsData.map((chip, index) => {
+              const isHovered = hoveredIndex === index;
+              const currentVariant =
+                isHovered
+                  ? chip.variant === "filled"
+                    ? "outlined"
+                    : "filled"
+                  : chip.variant;
+
+              return (
+                <motion.div
+                  key={index}
+                  variants={chipDropVariants}
+                  initial="hidden"
+                  animate="show"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 250 }}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <Chip
+                    label={chip.label}
+                    color={chip.color}
+                    variant={currentVariant}
+                    sx={{
+                      fontWeight: 500,
+                      px: 1.5,
+                      transition: "all 0.3s ease",
+                      ...(chip.sx || {}),
+                    }}
+                  />
+                </motion.div>
+              );
+            })}
+          </Stack>
+        </motion.div>
       </Box>
+      )}
 
       {/* GitHub Stats */}
       <Box sx={{ mt: 10 }}>
@@ -320,6 +445,7 @@ function About() {
       >
         <Contact />
       </motion.div>
+
     </Box>
   );
 }

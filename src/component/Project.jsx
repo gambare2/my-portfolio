@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 import Contact from "./Contact";
 
-// Parent container animation (controls staggering)
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -51,7 +50,7 @@ function Project() {
   return (
     <Box
       sx={{
-        px: { xs: 2, md: 6 },
+        px: { xs: 0, md: 1 },
         py: 8,
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary,
