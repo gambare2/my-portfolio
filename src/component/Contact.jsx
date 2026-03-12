@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Avatar, useTheme } from "@mui/material";
+import { Box, Avatar, useTheme, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { IoIosContacts } from "react-icons/io";
 
@@ -7,7 +7,7 @@ const contactCard = [
   { link: "https://www.instagram.com/thakur_aryan864/", name: "Instagram", logo: "instagram.svg" },
   { link: "https://www.facebook.com/princearyan.singh.161", name: "Facebook", logo: "facebook.png" },
   { link: "https://github.com/gambare2", name: "Github", logo: "github.svg" },
-  { link: "https://x.com/aryan2645?t=gNkydbsN86BgxFataQqqew&s=09", name: "Twitter/X", logo: "twitter.svg" },
+  { link: "https://x.com/aryan2645", name: "Twitter/X", logo: "twitter.svg" },
   { link: "mailto:sprincearyan384@gmail.com", name: "Gmail", logo: "gmail.svg" },
   { link: "tel:+916207535637", name: "Phone", logo: "phone.png" },
 ];
@@ -15,7 +15,8 @@ const contactCard = [
 export default function ContactOrbitLeft() {
   const [active, setActive] = useState(false);
   const theme = useTheme();
-  const radius = 120; 
+  const isMobile = useMediaQuery("(max-width:768px)");
+  const radius = isMobile ? 90 : 120;
 
   return (
     <Box
@@ -26,14 +27,14 @@ export default function ContactOrbitLeft() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        mt: 8,
       }}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
+      onMouseEnter={!isMobile ? () => setActive(true) : undefined}
+      onMouseLeave={!isMobile ? () => setActive(false) : undefined}
     >
-      {/* Central Circle */}
+      {/* MAIN CONTACT BUTTON */}
       <motion.div
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => setActive(!active)}
         style={{
           width: 50,
           height: 50,
@@ -43,22 +44,21 @@ export default function ContactOrbitLeft() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          fontWeight: 600,
-          fontSize: 15,
           cursor: "pointer",
-          boxShadow: theme.palette.mode === "dark"
-            ? "0px 8px 25px rgba(0,0,0,0.4)"
-            : "0px 8px 25px rgba(0,0,0,0.2)",
-          position: "relative",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0px 8px 25px rgba(0,0,0,0.4)"
+              : "0px 8px 25px rgba(0,0,0,0.2)",
           zIndex: 5,
         }}
       >
-        <IoIosContacts className="w-8 h-8"/>
+        <IoIosContacts className="w-8 h-8" />
       </motion.div>
 
-      {/* Contact icons on left arc */}
+      {/* SOCIAL ICONS */}
       {contactCard.map((contact, i) => {
         const angle = (i / (contactCard.length - 1)) * Math.PI - Math.PI / 2;
+
         const x = active ? -radius * Math.cos(angle) : 0;
         const y = active ? radius * Math.sin(angle) : 0;
 
@@ -74,9 +74,9 @@ export default function ContactOrbitLeft() {
             }}
             transition={{
               type: "spring",
-              stiffness: 400,
+              stiffness: 350,
               damping: 18,
-              delay: active ? i * 0.1 : 0,
+              delay: active ? i * 0.08 : 0,
             }}
             style={{
               position: "absolute",
@@ -85,45 +85,36 @@ export default function ContactOrbitLeft() {
               transform: "translate(-50%, -50%)",
             }}
           >
-            {/* Connecting line FROM main circle TO each contact */}
+            {/* CONNECTING LINE */}
             <motion.div
               animate={{
-                width: active ? Math.abs(x) - 40 : 0,
+                width: active ? Math.abs(x) - 35 : 0,
                 opacity: active ? 1 : 0,
               }}
-              transition={{ duration: 0.3, delay: i * 0.1 }}
+              transition={{ duration: 0.3, delay: i * 0.08 }}
               style={{
                 position: "absolute",
                 top: "50%",
-                left: -Math.abs(x) + 40,
+                left: -Math.abs(x) + 35,
                 transform: "translateY(-50%)",
                 height: 2,
                 backgroundColor: theme.palette.primary.main,
-                zIndex: 0,
               }}
             />
-              
-            {/* Contact bubble */}
+
             <a
               href={contact.link}
               target="_blank"
               rel="noopener noreferrer"
               style={{ textDecoration: "none" }}
             >
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                style={{
-                  cursor: "pointer",
-                  position: "relative",
-                  zIndex: 2,
-                }}
-              >
+              <motion.div whileHover={{ scale: 1.2 }}>
                 <Avatar
                   src={contact.logo}
                   alt={contact.name}
                   sx={{
-                    width: 40,
-                    height: 40,
+                    width: isMobile ? 36 : 40,
+                    height: isMobile ? 36 : 40,
                     backgroundColor:
                       theme.palette.mode === "dark" ? "#1e293b" : "#fff",
                     border: `2px solid ${theme.palette.primary.main}`,
@@ -134,28 +125,29 @@ export default function ContactOrbitLeft() {
                   }}
                 />
 
-                {/* Tooltip on hover */}
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  whileHover={{ opacity: 1, x: -25 }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    position: "absolute",
-                    left: -70,
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    background:
-                      theme.palette.mode === "dark" ? "#1e293b" : "#2563eb",
-                    color: "#fff",
-                    padding: "3px 8px",
-                    borderRadius: 6,
-                    fontSize: "0.7rem",
-                    whiteSpace: "nowrap",
-                    pointerEvents: "none",
-                  }}
-                >
-                  {contact.name}
-                </motion.div>
+                {/* TOOLTIP (DESKTOP ONLY) */}
+                {!isMobile && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    whileHover={{ opacity: 1, x: -25 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      position: "absolute",
+                      left: -70,
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      background:
+                        theme.palette.mode === "dark" ? "#1e293b" : "#2563eb",
+                      color: "#fff",
+                      padding: "3px 8px",
+                      borderRadius: 6,
+                      fontSize: "0.7rem",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {contact.name}
+                  </motion.div>
+                )}
               </motion.div>
             </a>
           </motion.div>

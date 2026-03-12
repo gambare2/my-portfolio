@@ -84,30 +84,32 @@ function Portfolio() {
       createTheme({
         palette: {
           mode,
+  
           ...(mode === "dark"
             ? {
-              background: {
-                default: "#121212",
-                paper: "#181818",
-              },
-              text: {
-                primary: "#fff",
-                secondary: "#aaa",
-              },
-              primary: { main: "#90caf9" },
-            }
+                background: {
+                  default: "#121212",
+                  paper: "#181818",
+                },
+                text: {
+                  primary: "#ffffff",
+                  secondary: "#cfcfcf",
+                },
+                primary: { main: "#90caf9" },
+              }
             : {
-              background: {
-                default: "#f5f5f5",
-                paper: "#ffffff",
-              },
-              text: {
-                primary: "#111",
-                secondary: "#555",
-              },
-              primary: { main: "#1976d2" },
-            }),
+                background: {
+                  default: "#f5f5f5",
+                  paper: "#ffffff",
+                },
+                text: {
+                  primary: "#111111",
+                  secondary: "#555555",
+                },
+                primary: { main: "#1976d2" },
+              }),
         },
+  
         typography: {
           fontFamily: "Inter, sans-serif",
         },
@@ -212,14 +214,14 @@ function Portfolio() {
         }}
       >
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             color="inherit"
             edge="start"
             onClick={togglebar}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
 
           <Typography
             variant="h6"

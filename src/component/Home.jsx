@@ -1,16 +1,22 @@
+import React, { useState } from "react";
 import { Link } from "react-router";
-import { Box, Grid, Typography, Chip, Stack, Button, useMediaQuery } from "@mui/material";
+import {
+  Chip,
+  Stack,
+  Button,
+  useMediaQuery,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { motion } from "framer-motion";
-import Contact from "./Contact";
-import { useState } from "react";
+
+import About from "./About";
 import Project from "./Project";
-import About from "./About"
-import Certificate from "./Certificate"
+import Certificate from "./Certificate";
+import AnimatedCodeBackground from "../assets/AnimatedCodeBackground";
 
 const text = "Developer";
-const text1 = "Prince";
-const text2 = "Aryan"
-const text3 = "Singh"
+const name = "Aryan";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -21,31 +27,21 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
 };
 
-const containerVariants2 = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2, // delay between chips
-      delayChildren: 0.4,
-    },
-  },
+const chipContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
 };
 
-const chipDropVariants = {
-  hidden: { y: -100, opacity: 0 },
+const chipDrop = {
+  hidden: { y: -30, opacity: 0 },
   show: {
     y: 0,
     opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 500,
-      damping: 15, // controls bounce
-    },
+    transition: { type: "spring", stiffness: 250, damping: 18 },
   },
 };
 
@@ -68,103 +64,133 @@ const chipsData = [
 
 export default function Home() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width:768px)");
+  const theme = useTheme();
+
   return (
-    <div>
-      {/* 👤 Profile Image */}
-      <motion.img
-        src="profile-banner.jpeg"
-        alt="Full image"
-        className="w-11/12 h-full mb-6 md:mb-0 rounded-2xl shadow-md"
-        variants={itemVariants}
-        whileHover={{ scale: 1.03 }}
-        transition={{ type: "spring", stiffness: 200 }}
-      />
-      <motion.div
-        className="flex flex-col md:flex-row items-center justify-center p-4 md:p-8"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {!isMobile && (
+    <div className="w-full relative overflow-hidden">
+
+      {/* Animated Background */}
+      <AnimatedCodeBackground />
+
+      {/* HERO */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 pt-24 pb-20">
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col md:flex-row items-center justify-between gap-12"
+        >
+
+          {/* IMAGE */}
           <motion.div
-          className="flex flex-col justify-center md:ml-10 text-center md:text-left"
-          variants={itemVariants}
-        >
-          <Grid item xs={12} md={7}>
-            <Box sx={{ textAlign: { xs: "center", md: "center" }, mb: 1 }}>
-              <Typography
-                variant="h3"
-                component="h1"
-                sx={{ fontWeight: "bold", display: "inline" }}
-              >
-                <Typography
-                  component="span"
-                  variant="h3"
-                  sx={{ color: "primary.main", fontWeight: "bold" }}
+            variants={itemVariants}
+            className="flex justify-center md:w-1/2"
+          >
+            <img
+              src="/developer.png"
+              alt="Developer"
+              className="w-[220px] sm:w-[260px] md:w-[320px] lg:w-[380px] xl:w-[420px] object-contain"
+            />
+          </motion.div>
+
+          {/* TEXT CONTENT */}
+          <motion.div
+            variants={itemVariants}
+            className="md:w-1/2 text-center md:text-left space-y-6"
+          >
+
+            {/* NAME */}
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: "bold",
+                lineHeight: 1.2,
+                color: "text.primary",
+              }}
+            >
+              <span style={{ color: theme.palette.primary.main }}>Hi,</span>{" "}
+              I'm{" "}
+              {name.split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  animate={{
+                    color: [
+                      theme.palette.text.primary,
+                      theme.palette.primary.main,
+                      theme.palette.text.primary,
+                    ],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    delay: index * 0.15,
+                    repeat: Infinity,
+                  }}
                 >
-                  Hii,
-                </Typography>{" "}
-                I’m a{" "}
-              </Typography>
+                  {char}
+                </motion.span>
+              ))}{" "}
+              👋
+            </Typography>
 
-              {/* ✨ Animated "Developer" word */}
-              <motion.span
-                style={{
-                  display: "inline-block",
-                  whiteSpace: "nowrap",
-                  fontWeight: "bold",
-                  fontSize: "2.5rem",
-                }}
-              >
-                {text.split("").map((char, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ color: "#000" }}
-                    animate={{ color: ["#000", "#1976d2", "#000"] }}
-                    transition={{
-                      duration: 2.5,
-                      delay: index * 0.15,
-                      repeat: Infinity,
-                      repeatDelay: text.length * 0.15,
-                    }}
-                    style={{ display: "inline-block" }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.span>
-            </Box>
-            
-            <motion.div variants={itemVariants}>
-              <Typography
-                variant="h5"
-                sx={{
-                  color: "text.secondary",
-                  mb: 3,
-                  textAlign: { xs: "center", md: "center" },
-                }}
-              >
-                Passionate about building beautiful & performant web experiences.
-              </Typography>
-            </motion.div>
+            {/* ROLE */}
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 600,
+                color: "text.primary",
+              }}
+            >
+              {text.split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  animate={{
+                    color: [
+                      theme.palette.text.primary,
+                      theme.palette.primary.main,
+                      theme.palette.text.primary,
+                    ],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    delay: index * 0.15,
+                    repeat: Infinity,
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </Typography>
 
+            {/* DESCRIPTION */}
+            <Typography
+              sx={{
+                maxWidth: 600,
+                color: "text.secondary",
+                fontSize: "1.1rem",
+              }}
+            >
+              Passionate about building beautiful, scalable and high-performance
+              web experiences using modern technologies.
+            </Typography>
+
+            {/* TECH STACK */}
             <motion.div
-              variants={containerVariants2}
+              variants={chipContainer}
               initial="hidden"
               animate="show"
-              className="flex justify-center"
             >
               <Stack
                 direction="row"
                 flexWrap="wrap"
+                gap={1.2}
                 justifyContent={{ xs: "center", md: "flex-start" }}
-                gap={1.5}
-                sx={{ mb: 4, cursor: "pointer" }}
-
+                sx={{ maxWidth: { xs: "100%", md: 520 } }}
               >
                 {chipsData.map((chip, index) => {
                   const isHovered = hoveredIndex === index;
+
                   const currentVariant =
                     isHovered
                       ? chip.variant === "filled"
@@ -175,11 +201,8 @@ export default function Home() {
                   return (
                     <motion.div
                       key={index}
-                      variants={chipDropVariants}
-                      initial="hidden"
-                      animate="show"
+                      variants={chipDrop}
                       whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 250 }}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
                     >
@@ -187,12 +210,7 @@ export default function Home() {
                         label={chip.label}
                         color={chip.color}
                         variant={currentVariant}
-                        sx={{
-                          fontWeight: 500,
-                          px: 1.5,
-                          transition: "all 0.3s ease",
-                          ...(chip.sx || {}),
-                        }}
+                        sx={{ fontWeight: 500 }}
                       />
                     </motion.div>
                   );
@@ -200,269 +218,51 @@ export default function Home() {
               </Stack>
             </motion.div>
 
-            <motion.div variants={itemVariants}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 250 }}>
-              <div className="flex justify-center">
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  size="medium"
-                  component={Link}
-                  to="/project"
-                  sx={{
-                    textTransform: "none",
-                    borderRadius: 2,
-                    px: 4,
-                    py: 1.2,
-                    fontSize: "0.95rem",
-                    display: "block",
-                    mx: { xs: "auto", md: "0" },
-                    maxWidth: 220,
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      backgroundColor: "secondary.main",
-                      color: "white",
-                      boxShadow: 3,
-                    },
-                  }}
-                >
-                  View My Projects 🚀
-                </Button>
-              </div>
-            </motion.div>
-          </Grid>
-        </motion.div>
-        )}
-        {isMobile && (
+            {/* BUTTONS */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
 
-        <motion.div
-          className="flex flex-col justify-center md:ml-10 text-center md:text-left"
-          variants={itemVariants}
-        >
-          <Grid item xs={12} md={7}>
-            <Box sx={{ textAlign: { xs: "center", md: "center" }, mb: 1 }}>
-              <Typography
-                variant="h3"
-                component="h1"
-                sx={{ fontWeight: "bold", display: "inline" }}
-              >
-                <Typography
-                  component="span"
-                  variant="h3"
-                  sx={{ color: "primary.main", fontWeight: "bold" }}
-                >
-                  Hii,
-                </Typography>{" "}
-                I’m a{" "}
-              </Typography>
-            <div className="flex flex-row gap-2">
-
-              <motion.span
-                style={{
-                  display: "inline-block",
-                  whiteSpace: "nowrap",
-                  fontWeight: "bold",
-                  fontSize: "2.5rem",
+              <Button
+                variant="contained"
+                component={Link}
+                to="/project"
+                sx={{
+                  px: 3,
+                  py: 1.3,
+                  fontWeight: 600,
                 }}
               >
-                {text1.split("").map((char, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ color: "#000" }}
-                    animate={{ color: ["#000", "#1976d2", "#000"] }}
-                    transition={{
-                      duration: 2.5,
-                      delay: index * 0.15,
-                      repeat: Infinity,
-                      repeatDelay: text.length * 0.15,
-                    }}
-                    style={{ display: "inline-block" }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.span>
+                View Projects 🚀
+              </Button>
 
-              <motion.span
-                style={{
-                  display: "inline-block",
-                  whiteSpace: "nowrap",
-                  fontWeight: "bold",
-                  fontSize: "2.5rem",
+              <Button
+                variant="outlined"
+                component="a"
+                href="/prince_resume2.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  px: 3,
+                  py: 1.3,
+                  fontWeight: 600,
                 }}
               >
-                {text2.split("").map((char, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ color: "#000" }}
-                    animate={{ color: ["#000", "#1976d2", "#000"] }}
-                    transition={{
-                      duration: 2.5,
-                      delay: index * 0.15,
-                      repeat: Infinity,
-                      repeatDelay: text.length * 0.15,
-                    }}
-                    style={{ display: "inline-block" }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.span>
+                View Resume 📄
+              </Button>
 
-              <motion.span
-                style={{
-                  display: "inline-block",
-                  whiteSpace: "nowrap",
-                  fontWeight: "bold",
-                  fontSize: "2.5rem",
-                }}
-              >
-                {text3.split("").map((char, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ color: "#000" }}
-                    animate={{ color: ["#000", "#1976d2", "#000"] }}
-                    transition={{
-                      duration: 2.5,
-                      delay: index * 0.15,
-                      repeat: Infinity,
-                      repeatDelay: text.length * 0.15,
-                    }}
-                    style={{ display: "inline-block" }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.span>
             </div>
-              {/* ✨ Animated "Developer" word */}
 
-            </Box>
+          </motion.div>
 
-            <motion.div variants={itemVariants}>
-              <Typography
-                variant="h5"
-                sx={{
-                  color: "text.secondary",
-                  mb: 3,
-                  textAlign: { xs: "center", md: "center" },
-                }}
-              >
-                Passionate about building beautiful & performant web experiences.
-              </Typography>
-            </motion.div>
-
-            {/* tech stack  */}
-            <motion.div
-              variants={containerVariants2}
-              initial="hidden"
-              animate="show"
-              className="flex justify-center"
-            >
-              <Stack
-                direction="row"
-                flexWrap="wrap"
-                justifyContent={{ xs: "center", md: "flex-start" }}
-                gap={1.5}
-                sx={{ mb: 4, cursor: "pointer" }}
-
-              >
-                {chipsData.map((chip, index) => {
-                  const isHovered = hoveredIndex === index;
-                  const currentVariant =
-                    isHovered
-                      ? chip.variant === "filled"
-                        ? "outlined"
-                        : "filled"
-                      : chip.variant;
-
-                  return (
-                    <motion.div
-                      key={index}
-                      variants={chipDropVariants}
-                      initial="hidden"
-                      animate="show"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 250 }}
-                      onMouseEnter={() => setHoveredIndex(index)}
-                      onMouseLeave={() => setHoveredIndex(null)}
-                    >
-                      <Chip
-                        label={chip.label}
-                        color={chip.color}
-                        variant={currentVariant}
-                        sx={{
-                          fontWeight: 500,
-                          px: 1.5,
-                          transition: "all 0.3s ease",
-                          ...(chip.sx || {}),
-                        }}
-                      />
-                    </motion.div>
-                  );
-                })}
-              </Stack>
-            </motion.div>
-                {/* view project */}
-            <motion.div variants={itemVariants}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 250 }}>
-              <div className="flex justify-center">
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  size="medium"
-                  component={Link}
-                  to="/project"
-                  sx={{
-                    textTransform: "none",
-                    borderRadius: 2,
-                    px: 4,
-                    py: 1.2,
-                    fontSize: "0.95rem",
-                    display: "block",
-                    mx: { xs: "auto", md: "0" },
-                    maxWidth: 220,
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      backgroundColor: "secondary.main",
-                      color: "white",
-                      boxShadow: 3,
-                    },
-                  }}
-                >
-                  View My Projects 🚀
-                </Button>
-
-
-
-
-
-              </div>
-            </motion.div>
-          </Grid>
         </motion.div>
-        )}
-        {/* 🧠 Text Section */}
+      </section>
 
-        {/* 📞 Contact Icon Set */}
-        <motion.div
-          className="fixed bottom-0 right-0"
-          variants={itemVariants}
-          initial={{ opacity: 0, x: 50, y: 50 }}
-          animate={{ opacity: 1, x: 0, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-        >
-          <Contact />
-        </motion.div>
-      </motion.div>
+      {/* MOBILE EXTRA SECTIONS */}
       {isMobile && (
-        <>
+        <div className="px-5 pb-20 space-y-16">
           <About />
           <Certificate />
           <Project />
-        </>
+        </div>
       )}
     </div>
   );
