@@ -16,6 +16,7 @@ export default function ContactOrbitLeft() {
   const [active, setActive] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery("(max-width:768px)");
+  if (isMobile) return null;
   const radius = isMobile ? 90 : 120;
 
   return (

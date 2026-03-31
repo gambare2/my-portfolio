@@ -7,6 +7,7 @@ import Certificate from './component/Certificate'
 import Contact from './component/Contact'
 import Project from './component/Project'
 import View from './assets/View';
+import Footer from './component/Footer';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/project" element={<Project />} />
           <Route path="/contact" element={<Contact />} />
           <Route path='/view_image' element={<View/>}/>
+          <Route path='/Footer' element={<Footer/>}/>
         </Route>
       </Routes>
     </Router>

@@ -9,11 +9,12 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
-
+import Contact from "./Contact"
 import About from "./About";
 import Project from "./Project";
 import Certificate from "./Certificate";
 import AnimatedCodeBackground from "../assets/AnimatedCodeBackground";
+import Footer from "./Footer";
 
 const text = "Developer";
 const name = "Aryan";
@@ -231,7 +232,7 @@ export default function Home() {
                   fontWeight: 600,
                 }}
               >
-                View Projects 🚀
+                View Projects
               </Button>
 
               <Button
@@ -246,22 +247,29 @@ export default function Home() {
                   fontWeight: 600,
                 }}
               >
-                View Resume 📄
+                View Resume
               </Button>
-
+              {!isMobile && (
+                <motion.div
+                className="fixed bottom-5 right-5"
+                initial={{ opacity: 0, x: 50, y: 50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 1 }}
+              >
+                <Contact />
+              </motion.div>
+              )}
             </div>
-
           </motion.div>
-
         </motion.div>
       </section>
-
       {/* MOBILE EXTRA SECTIONS */}
       {isMobile && (
         <div className="px-5 pb-20 space-y-16">
           <About />
           <Certificate />
           <Project />
+          <Footer/>
         </div>
       )}
     </div>

@@ -68,11 +68,16 @@ function Portfolio() {
   const [currenttitle, setCurrenttitle] = useState("My Portfolio");
   const [mobileopen, setMobileopen] = useState(false);
 
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
-  const [mode, setMode] = useState(prefersDarkMode ? "dark" : "light");
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const [mode, setMode] = useState("dark");
 
-  const toggleTheme = () =>
-    setMode((prev) => (prev === "light" ? "dark" : "light"));
+  const toggleTheme = () => {
+    setMode((prev) => {
+      const newMode = prev === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", newMode);
+      return newMode;
+    });
+  };
 
   useEffect(() => {
     const match = navitems.find((item) => item.path === location.pathname);
@@ -93,7 +98,7 @@ function Portfolio() {
                 },
                 text: {
                   primary: "#ffffff",
-                  secondary: "#cfcfcf",
+                  secondary: "#cbd5e1",
                 },
                 primary: { main: "#90caf9" },
               }

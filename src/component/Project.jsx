@@ -13,28 +13,27 @@ import {
   useTheme,
 } from "@mui/material";
 import Contact from "./Contact";
+import AnimatedCodeBackground from "../assets/AnimatedCodeBackground";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      staggerChildren: 0.05,
+      delayChildren: 0.1,
     },
   },
 };
 
 // Individual card animation (drop-in + bounce)
 const cardVariants = {
-  hidden: { y: 50, opacity: 0 },
+  hidden: { y: 30, opacity: 0 },
   show: {
     y: 0,
     opacity: 1,
     transition: {
-      type: "spring",
-      stiffness: 120,
-      damping: 12,
+      duration: 0.3, // 🔥 faster than spring
     },
   },
 };
@@ -53,23 +52,24 @@ function Project() {
         px: { xs: 0, md: 1 },
         py: 8,
         backgroundColor: theme.palette.background.default,
-        color: theme.palette.text.primary,
+        color: theme.palette.text.main,
         transition: "background-color 0.3s ease, color 0.3s ease",
       }}
     >
+      <AnimatedCodeBackground/>
       <Typography
         variant="h3"
         align="center"
         sx={{
           mb: 6,
           fontWeight: "bold",
-          color: theme.palette.text.primary,
+          color: theme.palette.text.main,
           borderBottom: `3px solid ${theme.palette.primary.main}`,
           display: "inline-block",
           px: 3,
         }}
       >
-        🚀 Projects
+         Projects
       </Typography>
 
       {/* Animated Container */}

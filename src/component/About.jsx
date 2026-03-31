@@ -540,14 +540,16 @@ function About() {
         </Typography>
 
         {/* Floating Contact */}
-        <motion.div
-          className="fixed bottom-5 right-5"
-          initial={{ opacity: 0, x: 50, y: 50 }}
-          animate={{ opacity: 1, x: 0, y: 0 }}
-          transition={{ delay: 1 }}
-        >
-          <Contact />
-        </motion.div>
+        {!isMobile && (
+                <motion.div
+                className="fixed bottom-5 right-5"
+                initial={{ opacity: 0, x: 50, y: 50 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 1 }}
+              >
+                <Contact />
+              </motion.div>
+              )}
       </Box>
     </Box>
   );

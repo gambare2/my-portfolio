@@ -27,10 +27,14 @@ export default function AnimatedCodeBackground() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: "url('/mobile-pirate-bg.png')",
+          
+            // 🔥 Premium gradient (dark + smooth)
+            background:
+              "linear-gradient(135deg, #020617 0%, #0f172a 40%, #1e293b 100%)",
+          
             backgroundSize: "cover",
             backgroundPosition: "center",
-            opacity: 0.5,
+            opacity: 0.9,
           }}
         />
       ) : (
@@ -49,7 +53,7 @@ export default function AnimatedCodeBackground() {
             style={{
               position: "absolute",
               inset: 0,
-              backgroundImage: "url('/pirate-bg2.png')",
+              backgroundImage: "url('/tech-bg2.png')",
               backgroundSize: "cover",
               backgroundPosition: "center",
               opacity: 0.4,
@@ -57,7 +61,7 @@ export default function AnimatedCodeBackground() {
           />
 
           {/* PIRATE SHIP SAILING */}
-          <motion.img
+          {/* <motion.img
             src="/pirate-ship.png"
             alt="ship"
             animate={{
@@ -75,7 +79,7 @@ export default function AnimatedCodeBackground() {
               width: 160,
               opacity: 0.65,
             }}
-          />
+          /> */}
 
           {/* OCEAN WAVE EFFECT */}
           <motion.div

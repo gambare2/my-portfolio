@@ -1,4 +1,5 @@
 import Contact from "./Contact";
+import { useState } from "react";
 import {
   Box,
   Grid,
@@ -8,9 +9,10 @@ import {
   Typography,
   useTheme,
   Divider,
+  Modal,
+  useMediaQuery,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { alpha } from "@mui/material";
 import AnimatedCodeBackground from "../assets/AnimatedCodeBackground";
 const certifyDrive = [
   {
@@ -73,38 +75,42 @@ const itemVariants = {
 
 function Certificate() {
   const theme = useTheme();
-
-  const openPDF = (fileid) => {
-    window.open(`https://drive.google.com/file/d/${fileid}/view`, "_blank");
+  const [selected, setSelected] = useState(null);
+  const isMobile = useMediaQuery("(max-width:768px)");
+  const openFull = (fileid) => {
+    setSelected(fileid);
   };
+
+  const closeFull = () => setSelected(null);
 
   return (
     <Box
-    sx={{
-      position: "relative",
-      minHeight: "100vh",
-      px: { xs: 3, md: 8 },
-      py: 8,
-      backgroundColor: (theme) =>
-        alpha(theme.palette.background.default, 0.7),
-      color: "text.primary",
-      backdropFilter: "blur(8px)",
-    }}
+      sx={{
+        position: "relative",
+        minHeight: "100vh",
+        px: { xs: 2, md: 8 },
+        py: 8,
+        background:
+          theme.palette.mode === "dark"
+            ? "#020617"
+            : "#f8fafc",
+        color: theme.palette.text.primary,
+      }}
     >
-      {/* Section Title */}
-      <AnimatedCodeBackground />
+      {/* Background (desktop only) */}
+      {!isMobile && typeof window !== "undefined" && window.innerWidth > 768 && (
+        <AnimatedCodeBackground />
+      )}
+
+      {/* Header */}
       <Box textAlign="center" mb={6}>
-        <Typography
-          variant="h4"
-          fontWeight="bold"
-          color="text.primary"
-        >
-          📜 Certifications
+        <Typography variant="h4" fontWeight="bold">
+          Certifications
         </Typography>
 
         <Divider
           sx={{
-            width: 120,
+            width: 100,
             mx: "auto",
             mt: 2,
             borderColor: theme.palette.primary.main,
@@ -119,89 +125,60 @@ function Certificate() {
             color: "text.secondary",
           }}
         >
-          Certifications that validate my skills across modern web
-          technologies, programming, and software development.
+          Certifications validating skills across development and programming.
         </Typography>
       </Box>
 
-      {/* Certificates Grid */}
-
+      {/* Grid */}
       <Grid container spacing={4} justifyContent="center">
-        {certifyDrive.map(({ fileid, name, date, course }, index) => (
+        {certifyDrive.map((item, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <motion.div
-              custom={index}
-              initial="hidden"
-              animate="visible"
-              variants={cardVariants}
-              whileHover={{ y: -6 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.08 }}
             >
               <Card
                 sx={{
-                  borderRadius: 4,
+                  borderRadius: 3,
                   overflow: "hidden",
-                  backdropFilter: "blur(6px)",
                   background:
                     theme.palette.mode === "dark"
-                      ? "rgba(30,30,30,0.8)"
-                      : "rgba(255,255,255,0.9)",
-                  border:
-                    theme.palette.mode === "dark"
-                      ? "1px solid rgba(255,255,255,0.08)"
-                      : "1px solid rgba(0,0,0,0.08)",
-                  boxShadow:
-                    theme.palette.mode === "dark"
-                      ? "0 8px 30px rgba(0,0,0,0.6)"
-                      : "0 8px 30px rgba(0,0,0,0.1)",
-                  transition: "all 0.3s ease",
+                      ? "#0f172a"
+                      : "#ffffff",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  transition: "0.3s",
+                  "&:hover": {
+                    transform: "translateY(-6px)",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+                  },
                 }}
-                onClick={() => openPDF(fileid)}
               >
-                <CardActionArea>
-
-                  {/* Certificate Preview */}
-
+                <CardActionArea onClick={() => openFull(item.fileid)}>
+                  {/* Sharp Image Preview */}
                   <Box
-                    component="iframe"
-                    src={`https://drive.google.com/file/d/${fileid}/preview`}
+                    component="img"
+                    src={`https://drive.google.com/thumbnail?id=${item.fileid}&sz=w1000`}
                     sx={{
                       width: "100%",
                       height: 200,
-                      border: "none",
-                      backgroundColor:
-                        theme.palette.mode === "dark"
-                          ? "#0f172a"
-                          : "#f1f5f9",
+                      objectFit: "cover",
+                      backgroundColor: "#111",
                     }}
                   />
 
-                  {/* Certificate Info */}
-
                   <CardContent>
-
-                    <Typography
-                      variant="h6"
-                      fontWeight="bold"
-                      color="text.primary"
-                      sx={{ mb: 1 }}
-                    >
-                      {name}
+                    <Typography fontWeight="bold">
+                      {item.name}
                     </Typography>
 
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      📅 {date}
+                    <Typography variant="body2" color="text.secondary">
+                      {item.date}
                     </Typography>
 
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      🎓 {course}
+                    <Typography variant="body2" color="text.secondary">
+                      {item.course}
                     </Typography>
-
                   </CardContent>
                 </CardActionArea>
               </Card>
@@ -210,14 +187,38 @@ function Certificate() {
         ))}
       </Grid>
 
-      {/* Floating Contact Button */}
+      {/* Modal Preview */}
+      <Modal open={!!selected} onClose={closeFull}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "90%",
+            height: "90%",
+            bgcolor: "#000",
+            borderRadius: 2,
+            overflow: "hidden",
+          }}
+        >
+          {selected && (
+            <iframe
+              src={`https://drive.google.com/file/d/${selected}/preview`}
+              width="100%"
+              height="100%"
+              style={{ border: "none" }}
+            />
+          )}
+        </Box>
+      </Modal>
 
+      {/* Floating Contact */}
       <motion.div
         className="fixed bottom-5 right-5"
-        variants={itemVariants}
-        initial="hidden"
-        animate="visible"
-        transition={{ delay: 1 }}
+        initial={{ opacity: 0, x: 40, y: 40 }}
+        animate={{ opacity: 1, x: 0, y: 0 }}
+        transition={{ delay: 0.8 }}
       >
         <Contact />
       </motion.div>
