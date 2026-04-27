@@ -101,7 +101,6 @@ function Certificate() {
       {!isMobile && typeof window !== "undefined" && window.innerWidth > 768 && (
         <AnimatedCodeBackground />
       )}
-
       {/* Header */}
       <Box textAlign="center" mb={6}>
         <Typography variant="h4" fontWeight="bold">

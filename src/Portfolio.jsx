@@ -67,6 +67,10 @@ function Portfolio() {
   const location = useLocation();
   const [currenttitle, setCurrenttitle] = useState("My Portfolio");
   const [mobileopen, setMobileopen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const previewVideo = "/laptop-preview.mp4"; 
+  const fullVideo = "/laptop-full.mp4"; 
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [mode, setMode] = useState("dark");
@@ -89,32 +93,32 @@ function Portfolio() {
       createTheme({
         palette: {
           mode,
-  
+
           ...(mode === "dark"
             ? {
-                background: {
-                  default: "#121212",
-                  paper: "#181818",
-                },
-                text: {
-                  primary: "#ffffff",
-                  secondary: "#cbd5e1",
-                },
-                primary: { main: "#90caf9" },
-              }
+              background: {
+                default: "#121212",
+                paper: "#181818",
+              },
+              text: {
+                primary: "#ffffff",
+                secondary: "#cbd5e1",
+              },
+              primary: { main: "#90caf9" },
+            }
             : {
-                background: {
-                  default: "#f5f5f5",
-                  paper: "#ffffff",
-                },
-                text: {
-                  primary: "#111111",
-                  secondary: "#555555",
-                },
-                primary: { main: "#1976d2" },
-              }),
+              background: {
+                default: "#f5f5f5",
+                paper: "#ffffff",
+              },
+              text: {
+                primary: "#111111",
+                secondary: "#555555",
+              },
+              primary: { main: "#1976d2" },
+            }),
         },
-  
+
         typography: {
           fontFamily: "Inter, sans-serif",
         },
@@ -135,13 +139,45 @@ function Portfolio() {
       <Toolbar />
       <Divider />
       <List>
-        <Link to="/view_image" style={{ textDecoration: "none" }}>
-          <img
-            src="profile_pic.jpg"
-            alt="404 Not Found"
-            className="size-40 md:mt-5 cursor-pointer border-2 border-gray-500"
-          />
-        </Link>
+      <video
+        src="/laptop-video.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        onClick={() => setOpen(true)}
+        className="size-40 md:mt-5 md:ml-8 md:mb-2 cursor-pointer object-cover"
+      />
+
+      {/* Modal */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+          onClick={() => setOpen(false)} // click outside to close
+        >
+          <div
+            className="relative"
+            onClick={(e) => e.stopPropagation()} // prevent close when clicking video
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute -top-10 right-0 text-white text-xl"
+            >
+              ✕
+            </button>
+
+            {/* Large Video */}
+            <video
+              src="/laptop-video.mp4"
+              autoPlay
+              loop
+              controls
+              className="w-[90vw] max-w-3xl rounded-xl"
+            />
+          </div>
+        </div>
+      )}
 
         {navitems.map(({ title, icon: Icon, path }) => (
           <ListItem

@@ -89,10 +89,13 @@ export default function Home() {
             variants={itemVariants}
             className="flex justify-center md:w-1/2"
           >
-            <img
-              src="/developer.png"
-              alt="Developer"
-              className="w-[220px] sm:w-[260px] md:w-[320px] lg:w-[380px] xl:w-[420px] object-contain"
+            <video
+              src="/video-spin.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-[220px] sm:w-[260px] md:w-[320px] lg:w-[380px] xl:w-[420px] object-contain rounded-xl"
             />
           </motion.div>
 
@@ -251,13 +254,13 @@ export default function Home() {
               </Button>
               {!isMobile && (
                 <motion.div
-                className="fixed bottom-5 right-5"
-                initial={{ opacity: 0, x: 50, y: 50 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ delay: 1 }}
-              >
-                <Contact />
-              </motion.div>
+                  className="fixed bottom-5 right-5"
+                  initial={{ opacity: 0, x: 50, y: 50 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{ delay: 1 }}
+                >
+                  <Contact />
+                </motion.div>
               )}
             </div>
           </motion.div>
@@ -269,7 +272,7 @@ export default function Home() {
           <About />
           <Certificate />
           <Project />
-          <Footer/>
+          <Footer />
         </div>
       )}
     </div>
