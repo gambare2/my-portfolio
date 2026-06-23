@@ -1,130 +1,67 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useMediaQuery } from "@mui/material";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-export default function AnimatedCodeBackground() {
-  const isMobile = useMediaQuery("(max-width:768px)");
+export default function AnimatedBackground() {
+  const { scrollX, scrollY } = useScroll();
+
+  const moveUp = useTransform(scrollX, [0, 2000], [0, -250]);
+  const moveDown = useTransform(scrollX, [0, 2000], [0, 150]);
+
+  const aryanX = useTransform(scrollY, [0, 2000], [0, 1500]);
+  const aryanY = useTransform(scrollY, [0, 2000], [0, -800]);
+
+  const singhX = useTransform(scrollY, [0, 2000], [0, -1500]);
+  const singhY = useTransform(scrollY, [0, 2000], [0, 800]);
+
+  const opacity = useTransform(scrollY, [0, 800], [0.03, 0]);
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        overflow: "hidden",
-        zIndex: 0,
-        pointerEvents: "none",
-      }}
-    >
-      {/* MOBILE BACKGROUND */}
-      {isMobile ? (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+
+      {/* Main Background */}
+      <div className="absolute inset-0 bg-[#030817]" />
+
+      {/* Blue Glow */}
+      <motion.div
+        style={{ y: moveDown }}
+        className="absolute right-[6%] top-[8%] w-[700px] h-[700px] rounded-full blur-[180px] bg-purple-500/40" />
+
+      {/* Purple Glow */}
+      <motion.div
+        style={{ y: moveUp }}
+        className=" absolute left-[15%] bottom-[10%] w-[500px] h-[500px] rounded-full blur-[180px] bg-teal-500/20"
+      />
+      {/* Huge Name Layer */}
+      <div className="absolute inset-0 flex flex-col justify-center overflow-hidden mt-40">
         <motion.div
-          animate={{ scale: [1, 1.08, 1] }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
           style={{
-            position: "absolute",
-            inset: 0,
-          
-            // 🔥 Premium gradient (dark + smooth)
-            background:
-              "linear-gradient(135deg, #020617 0%, #0f172a 40%, #1e293b 100%)",
-          
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.9,
+            x: aryanX,
+            y: aryanY,
+            opacity,
+            fontFamily: '"Monoton", sans-serif',
           }}
-        />
-      ) : (
-        <>
-          {/* DESKTOP PIRATE BACKGROUND */}
-          <motion.div
-            animate={{
-              scale: [1, 1.05, 1],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: "url('/tech-bg2.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.4,
-            }}
-          />
+          className=" text-[10vw] font-black leading-[0.8] text-white select-none uppercase mb-10 whitespace-nowrap"
+        >
+          Prince
+        </motion.div>
 
-          {/* PIRATE SHIP SAILING */}
-          {/* <motion.img
-            src="/pirate-ship.png"
-            alt="ship"
-            animate={{
-              x: [200, window.innerWidth + 200],
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 35,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            style={{
-              position: "absolute",
-              bottom: "12%",
-              width: 160,
-              opacity: 0.65,
-            }}
-          /> */}
+        <motion.div
+          style={{
+            x: singhX,
+            y: singhY,
+            opacity,
+            fontFamily: '"Monoton", sans-serif',
+          }}
+          className=" text-[10vw] font-black leading-[0.8] text-white select-none uppercase whitespace-nowrap ml-48"
+        >
+          Aryan Singh
+        </motion.div>
+      </div>
 
-          {/* OCEAN WAVE EFFECT */}
-          <motion.div
-            animate={{ y: [0, 15, 0] }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{
-              position: "absolute",
-              bottom: 0,
-              width: "100%",
-              height: "30%",
-              background:
-                "linear-gradient(to top, rgba(0,70,130,0.5), transparent)",
-            }}
-          />
+      {/* Grid Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(255,255,255,.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.15)_1px,transparent_1px)] bg-[size:80px_80px]" />
 
-          {/* FLOATING PARTICLES */}
-          {[...Array(25)].map((_, i) => (
-            <motion.div
-              key={i}
-              animate={{
-                y: [0, -40, 0],
-                opacity: [0.2, 0.8, 0.2],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 5,
-                repeat: Infinity,
-              }}
-              style={{
-                position: "absolute",
-                width: 4,
-                height: 4,
-                background: "#9be7ff",
-                borderRadius: "50%",
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                opacity: 0.5,
-              }}
-            />
-          ))}
-        </>
-      )}
+      {/* Noise */}
+      <div className=" absolute inset-0 opacity-[0.015] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
     </div>
   );
 }

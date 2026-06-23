@@ -1,10 +1,10 @@
 [
   {
-    "name": "taskmanagement",
-    "link": "https://taskmanagement-eight-chi.vercel.app",
-    "framework": "vite",
-    "createdAt": "10/10/2025",
-    "image": "/project-images/taskmanagement.png"
+    "name": "Eval AI",
+    "link": "https://eval-ai.princearyansingh.dev",
+    "framework": "NextJS",
+    "createdAt": "20/06/2026",
+    "image": "/project-images/eval-ai.png"
   },
   {
     "name": "Study Center Management",
@@ -14,25 +14,11 @@
     "image": "/project-images/Study-center-management.png"
   },
   {
-    "name": "Sunmayo Admin Panel",
-    "link": "https://admin-page-blond.vercel.app",
-    "framework": "React Js / Node JS",
-    "createdAt": "10/09/2025",
-    "image": "/project-images/image.png"
-  },
-  {
     "name": "Adsource Pdf Resources",
     "link": "https://adsource-panel-iota.vercel.app",
     "framework": "NextJS",
     "createdAt": "01/11/2025",
     "image": "/project-images/image2.png"
-  },
-  {
-    "name": "notes_taker",
-    "link": "https://notestaker-six.vercel.app",
-    "framework": "vite",
-    "createdAt": "10/7/2025",
-    "image": "/project-images/notes_taker.png"
   },
   {
     "name": "archvid",
@@ -49,31 +35,10 @@
     "image": "/project-images/music-tube.png"
   },
   {
-    "name": "arch-sell",
-    "link": "https://arch-sell.vercel.app",
-    "framework": "vite",
-    "createdAt": "1/10/2025",
-    "image": "/project-images/arch-sell.png"
-  },
-  {
     "name": "admin-page",
     "link": "https://admin-page.vercel.app",
     "framework": "vite",
     "createdAt": "15/9/2025",
     "image": "/project-images/admin-page.png"
-  },
-  {
-    "name": "my-portfolio",
-    "link": "https://my-portfolio-eight-beta-86.vercel.app",
-    "framework": "vite",
-    "createdAt": "27/6/2025",
-    "image": "/project-images/my-portfolio.png"
-  },
-  {
-    "name": "avaitor-education",
-    "link": "https://avaitor-education.vercel.app",
-    "framework": "vite",
-    "createdAt": "11/8/2025",
-    "image": "/project-images/avaitor-education.png"
   }
 ]

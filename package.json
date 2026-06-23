@@ -17,6 +17,7 @@
     "@mui/material": "^7.1.2",
     "framer-motion": "^12.23.22",
     "fs": "^0.0.1-security",
+    "lucide-react": "^1.21.0",
     "node-fetch": "^3.3.2",
     "path": "^0.12.7",
     "puppeteer": "^24.23.0",
