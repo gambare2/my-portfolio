@@ -14,6 +14,7 @@ function Footer() {
         px: 2,
         textAlign: "center",
 
+
         color: theme.palette.text.primary,
         boxShadow:
           theme.palette.mode === "dark"

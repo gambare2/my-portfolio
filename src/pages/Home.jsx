@@ -30,6 +30,7 @@ export default function Home() {
       setScrolled(window.scrollY > 30);
     };
 
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

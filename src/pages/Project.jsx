@@ -14,6 +14,7 @@ export default function Project() {
     >
       <AnimatedCodeBackground />
 
+
       <div className="relative z-10">
 
         {/* Heading */}

@@ -109,6 +109,7 @@ function Certificate() {
         </Typography>
       </Box>
 
+
       {/* Grid */}
       <div className="relative overflow-hidden py-10">
         <motion.div

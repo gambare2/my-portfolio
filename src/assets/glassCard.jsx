@@ -17,4 +17,5 @@ export default function GlassCard({ children, className = "" }) {
       {children}
     </motion.div>
   );
+
 }

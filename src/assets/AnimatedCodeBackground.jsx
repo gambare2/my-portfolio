@@ -10,8 +10,7 @@ export default function AnimatedBackground() {
   const aryanY = useTransform(scrollY, [0, 2000], [0, -800]);
 
   const singhX = useTransform(scrollY, [0, 2000], [0, -1500]);
-  const singhY = useTransform(scrollY, [0, 2000], [0, 800]);
-
+  const singhY = useTransform(scrollY, [0, 2000], [0, 800])
   const opacity = useTransform(scrollY, [0, 800], [0.03, 0]);
 
   return (
