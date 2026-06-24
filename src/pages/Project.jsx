@@ -8,7 +8,6 @@ export default function Project() {
     <Box
       sx={{
         position: "relative",
-        minHeight: "100vh",
         overflow: "hidden",
       }} id="project"
     >
@@ -18,7 +17,7 @@ export default function Project() {
       <div className="relative z-10">
 
         {/* Heading */}
-        <div className="text-center pt-20 pb-20">
+        <div className="text-center mt-6">
           <h2 className="text-5xl md:text-7xl font-bold text-white">
             Featured Projects
           </h2>
@@ -139,7 +138,7 @@ export default function Project() {
         </div>
 
         {/* Bottom Spacer */}
-        <div className="h-[50vh]" />
+        <div className="h-[9vh]" />
       </div>
     </Box>
   );

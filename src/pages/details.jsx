@@ -60,7 +60,8 @@ export default function Details() {
                 viewport={{ once: true }}
                 transition={{ duration: 2 }}
                 className=" hidden md:block absolute left-1/2 top-0 -translate-x-1/2 w-[4px] rounded-full bg-gradient-to-b from-violet-500 via-cyan-400 to-transparent shadow-[0_0_40px_rgba(139,92,246,.8)]" />
-            {journey.map((item, index) => {
+                
+                {journey.map((item, index) => {
                 const Icon = item.icon;
 
                 return (
@@ -124,7 +125,7 @@ export default function Details() {
                                     type: "spring",
                                     stiffness: 200,
                                 }}
-                                className="group relative overflow-hidden rounded-[32px] p-8 border border-white/10 backdrop-blur-2xl bg-white/[0.05] shadow-[0_8px_50px_rgba(0,0,0,.5)]">
+                                className="group relative overflow-hidden mb-4 lg:mb-0 rounded-[32px] p-8 border border-white/10 backdrop-blur-2xl bg-white/[0.05] shadow-[0_8px_50px_rgba(0,0,0,.5)]">
 
                                 {/* Hover Glow */}
                                 <div

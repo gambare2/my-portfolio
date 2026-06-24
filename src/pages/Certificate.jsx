@@ -73,9 +73,9 @@ function Certificate() {
     <Box
       sx={{
         position: "relative",
-        minHeight: "100vh",
+        minHeight: "80vh",
         px: { xs: 2, md: 8 },
-        py: 8,
+        py: 7
       }} id="certificate"
     >
       {/* Background (desktop only) */}

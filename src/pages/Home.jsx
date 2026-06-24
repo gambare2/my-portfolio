@@ -205,17 +205,6 @@ export default function Home() {
 
         </div>
       </section>
-
-      {/* <Outlet /> */}
-      {/* MOBILE EXTRA SECTIONS */}
-      {isMobile && (
-        <div className="px-5 pb-20 space-y-16">
-          <About />
-          <Certificate />
-          <Project />
-          <Footer />
-        </div>
-      )}
     </div>
   );
 }
