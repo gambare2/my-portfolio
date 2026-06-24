@@ -38,7 +38,7 @@ export default function Home() {
 
 
   return (
-    <div className="w-full relative overflow-hidden">
+    <div className="w-full relative">
       {/* HERO */}
       <section className="relative min-h-screen overflow-hidden">
         <AnimatedCodeBackground />
@@ -150,22 +150,92 @@ export default function Home() {
         )}
 
         {/* main setion  */}
-        <div className="relative z-10 flex flex-row justify-between items-center">
-          <div className="m-20 mt-0">
-            <img src="/Coder.png" alt="coder image" />
-            <p className="text-primary text-5xl md:text-7xl font-bold uppercase tracking-[6px]">
+        <div
+  className="
+    relative z-10
+    flex flex-col lg:flex-row
+    justify-center lg:justify-between
+    items-center
+    min-h-screen
+    px-6 md:px-10 lg:px-20
+    gap-10 lg:gap-0
+  "
+>
+          <div
+  className="
+    w-full lg:w-1/2
+    flex flex-col
+    items-center lg:items-start
+    text-center lg:text-left
+  "
+>
+            <img
+  src="/Coder.png"
+  alt="coder image"
+  className="
+    w-[220px]
+    sm:w-[280px]
+    md:w-[350px]
+    lg:w-[350px]
+    xl:w-[350px]
+    object-contain
+  "
+/>
+           <p
+  className="
+    text-primary
+    text-4xl
+    sm:text-5xl
+    md:text-6xl
+    lg:text-7xl
+    font-bold
+    uppercase
+    tracking-[3px]
+    md:tracking-[6px]
+  "
+>
               Full Stack <br /> <span className="text-4xl md:text-6xl">Developer</span>
             </p>
 
-            <h1 className="text-xl md:text-4xl font-black leading-none"
-              style={{ fontFamily: "Arizonia", width: "70%" }}>
+            <h1
+  className="
+    text-lg
+    sm:text-2xl
+    md:text-3xl
+    lg:text-4xl
+    font-black
+    leading-tight
+    max-w-xl
+    mt-4
+  "
+  style={{ fontFamily: "Arizonia" }}
+>
               Helping Startups Turn Ideas Into Reality
             </h1>
 
           </div>
-          <div className="mr-20">
+          <div
+  className="
+    w-full
+    lg:w-auto
+    flex
+    flex-col
+    items-center
+  "
+>
 
-            <div className="grid md:grid-cols-2 gap-2 border-b border-slate-300/20 pb-4">
+           <div
+  className="
+    grid
+    grid-cols-2
+    gap-4
+    w-full
+    max-w-md
+    border-b
+    border-slate-300/20
+    pb-6
+  "
+>
 
               <GlassCard >
                 <h3>15+</h3>
@@ -188,7 +258,17 @@ export default function Home() {
             </GlassCard> */}
 
             </div>
-            <p className="max-w-[350px] mx-auto mt-8 text-lg text-slate-400 text-justify">
+            <p
+  className="
+    max-w-md
+    mt-6
+    text-sm
+    sm:text-base
+    md:text-lg
+    text-slate-400
+    text-center
+  "
+>
               MERN Stack Developer focused on building modern web applications, AI tools and scalable software solutions.
             </p>
             <button
@@ -197,7 +277,20 @@ export default function Home() {
                   .getElementById("contact")
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="bg-primary text-white px-6 py-3 rounded-full font-medium mt-4 bg-white/10 hover:bg-white/20"
+              className="
+  px-6
+  py-3
+  mt-6
+  rounded-full
+  font-medium
+  bg-white/10
+  backdrop-blur-xl
+  border
+  border-white/10
+  text-white
+  hover:bg-white/20
+  transition-all
+"
             >
               Contact Me
             </button>

@@ -30,20 +30,23 @@ export default function Project() {
         <div
           className="relative"
           style={{
-            height: `${projects.length * 100}vh`,
-          }}
+  height: `${
+    projects.length *
+    (window.innerWidth < 768 ? 78 : 70)
+  }vh`,
+}}
         >
           {projects.map((project, index) => (
             <motion.div
               key={project.name}
-              className="sticky top-0 h-screen flex items-center px-6 md:px-12"
+              className="sticky top-20 flex items-center px-4 md:px-8 py-8"
               style={{
                 zIndex: index + 1,
               }}
             >
               <div
                 className="
-          max-w-7xl
+          max-w-5xl
           mx-auto
           w-full
           rounded-[32px]
@@ -55,7 +58,7 @@ export default function Project() {
           shadow-2xl
         "
               >
-                <div className="grid lg:grid-cols-2 min-h-[600px]">
+                <div className="grid lg:grid-cols-2 min-h-[350px] md:min-h-[420px]">
 
                   {/* IMAGE */}
                   <div className="relative overflow-hidden">
@@ -74,7 +77,7 @@ export default function Project() {
                   </div>
 
                   {/* CONTENT */}
-                  <div className="flex flex-col justify-center p-10 md:p-16">
+                  <div className="flex flex-col justify-center p-5 md:p-8">
 
                     <p className="text-violet-400 text-lg mb-2">
                       {project.framework}
@@ -137,8 +140,6 @@ export default function Project() {
           ))}
         </div>
 
-        {/* Bottom Spacer */}
-        <div className="h-[9vh]" />
       </div>
     </Box>
   );

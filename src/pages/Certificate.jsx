@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 import AnimatedCodeBackground from "../assets/AnimatedCodeBackground";
+import { grey } from "@mui/material/colors";
 
 const certifyDrive = [
   {
@@ -102,7 +103,7 @@ function Certificate() {
             mt: 2,
             maxWidth: 600,
             mx: "auto",
-            color: "text.secondary",
+            color: grey,
           }}
         >
           Certifications validating skills across development and programming.
@@ -216,12 +217,12 @@ function Certificate() {
           variant="h4"
           fontWeight="bold"
           align="center"
-          color="text.primary"
+          color="white"
         >
-          📊 GitHub Stats
+          GitHub Stats
         </Typography>
 
-        <Divider sx={{ width: 120, mx: "auto", mt: 2, mb: 4 }} />
+        <Divider sx={{ width: 140, mx: "auto", mt: 2, mb: 4, borderColor: "blue" }} />
 
         <Stack
           direction={{ xs: "column", md: "row" }}
