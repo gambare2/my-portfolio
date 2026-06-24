@@ -32,7 +32,7 @@ function Footer() {
         variant="body2"
         sx={{ mb: 2, color: "white" }}
       >
-        Frontend Developer | React | AI Enthusiast
+        Full Stack Developer | React | AI Enthusiast
       </Typography>
 
       {/* Social Icons */}
