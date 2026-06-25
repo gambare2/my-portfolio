@@ -29,17 +29,7 @@ const SkillPill = ({ icon, text, rotate }) => (
       y: -5,
       rotate: 0,
     }}
-    className="
-      flex items-center gap-3
-        px-3 md:px-5 py-2 md:py-3
-      rounded-full
-      bg-white/10
-      backdrop-blur-xl
-      border border-white/20
-      shadow-lg
-      text-white
-      w-fit
-    "
+    className="flex items-center gap-3 px-3 md:px-5 py-2 md:py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg text-white w-fit"
     style={{
       transform: `rotate(${rotate}deg)`,
     }}
@@ -76,36 +66,12 @@ function About() {
         </div>
         {/* Intro */}
         <div
-          className="
-    relative
-    flex
-    flex-col
-    lg:flex-row
-    items-center
-    justify-center
-    gap-10
-    lg:gap-0
-    px-4
-    md:px-6
-    mt-10
-  "
+          className="relative flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-0 px-4 md:px-6 mt-10"
         >
 
           {/* Left Pills */}
           <div
-            className="
-    flex
-    flex-wrap
-    justify-center
-    gap-4
-    lg:flex-col
-    lg:absolute
-    lg:left-10
-    xl:left-30
-    lg:gap-20
-    order-2
-    lg:order-1
-  "
+            className="flex flex-wrap justify-center gap-4 lg:flex-col lg:absolute lg:left-10 xl:left-30 lg:gap-20 order-2 lg:order-1"
           >
             <SkillPill text="MERN Stack" rotate={-8} />
             <SkillPill text="AI Tools" rotate={5} />
@@ -113,26 +79,9 @@ function About() {
           </div>
 
           {/* Center Content */}
-          <div
-            className="
-    max-w-4xl
-    mx-auto
-    text-center
-    z-10
-    order-1
-    lg:order-2
-  "
-          >
+          <div className="max-w-4xl mx-auto text-center z-10 order-1 lg:order-2">
             <h2
-              className="
-    text-2xl
-    sm:text-3xl
-    md:text-5xl
-    lg:text-6xl
-    font-light
-    leading-[1.3]
-    text-white
-  "
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light leading-[1.3] text-white"
             >
               I help startups turn ideas into
               <span className="text-violet-400">
@@ -148,20 +97,7 @@ function About() {
           </div>
 
           {/* Right Pills */}
- <div
-  className="
-    flex
-    flex-wrap
-    justify-center
-    gap-4
-    lg:flex-col
-    lg:absolute
-    lg:right-10
-    xl:right-30
-    lg:gap-20
-    order-3
-  "
->
+          <div className="flex flex-wrap justify-center gap-4 lg:flex-col lg:absolute lg:right-10 xl:right-30 lg:gap-20 order-3">
             <SkillPill text="React Native" rotate={8} icon={<img src="" alt="" />} />
             <SkillPill text="Firebase" rotate={-5} />
             <SkillPill text="UI/UX Design" rotate={6} />
@@ -175,17 +111,7 @@ function About() {
               Tech Stack
             </p>
 
-            <h2
-  className="
-    text-3xl
-    md:text-5xl
-    font-bold
-    text-white
-    mt-4
-  "
->
-              My Technology Arsenal
-            </h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mt-4">My Technology Arsenal</h2>
           </div>
 
           {/* Row 1 */}
@@ -202,20 +128,7 @@ function About() {
               }}
             >
               {[...chipsData, ...chipsData].map((chip, index) => (
-                <div
-                  key={index}
-                  className="
-                px-6 py-3
-                rounded-full
-                bg-white/10
-                backdrop-blur-xl
-                border border-white/10
-                text-white
-                whitespace-nowrap
-                hover:scale-110
-                transition
-              "
-                >
+                <div key={index} className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 text-white whitespace-nowrap hover:scale-110 transition">
                   {chip.label}
                 </div>
               ))}
@@ -238,18 +151,13 @@ function About() {
               {[...chipsData, ...chipsData].map((chip, index) => (
                 <div
                   key={index}
-                  className="
-                px-6 py-3
-                rounded-full
-                bg-violet-500/10
+                  className="px-6 py-3 rounded-full bg-violet-500/10
                 backdrop-blur-xl
                 border border-violet-500/20
                 text-white
                 whitespace-nowrap
                 hover:scale-110
-                transition
-              "
-                >
+                transition">
                   {chip.label}
                 </div>
               ))}
