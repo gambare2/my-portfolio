@@ -35,7 +35,41 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const letterVariants = {
+    initial: {
+      rotateX: 0,
+      y: 0,
+      color: "#ffffff",
+    },
+    hover: (i) => ({
+      rotateX: [0, 180, 360],
+      y: [0, 8, -8, 0],
+      color: "#8b5cf6",
+      transition: {
+        delay: i * 0.07,
+        duration: 0.65,
+        ease: "easeInOut",
+      },
+    }),
+  };
 
+  const buttonLetterVariants = {
+    initial: {
+      rotateX: 0,
+      y: 0,
+      color: "#ffffff",
+    },
+    hover: (i) => ({
+      rotateX: [0, 180, 360],
+      y: [0, 8, -8, 0],
+      color: "#95ff49ff",
+      transition: {
+        delay: i * 0.05,
+        duration: 0.6,
+        ease: "easeInOut",
+      },
+    }),
+  };
 
   return (
     <div className="w-full relative">
@@ -92,12 +126,35 @@ export default function Home() {
                           block: "start",
                         });
                     }}
-                    className="text-white font-medium tracking-wide"
-                  > {item.name}
+                    className="relative overflow-hidden"
+                  >
+                    <motion.span
+                      initial="initial"
+                      whileHover="hover"
+                      className="flex"
+                    >
+                      {item.name.split("").map((letter, i) => (
+                        <motion.span
+                          key={i}
+                          custom={i}
+                          variants={letterVariants}
+                          className="inline-block font-medium tracking-wide"
+                          style={{
+                            transformStyle: "preserve-3d",
+                          }}
+                        >
+                          {letter === " " ? "\u00A0" : letter}
+                        </motion.span>
+                      ))}
+                    </motion.span>
                   </button>
 
-                  <span
-                    className="absolute left-0 -bottom-1 h-[2px] w-0 bg-violet-500 transition-all duration-300 group-hover:w-full" />
+                  <motion.span
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute left-0 -bottom-1 h-[2px] bg-violet-500"
+                  />
                 </motion.div>
               ))}
             </div>
@@ -151,92 +208,26 @@ export default function Home() {
 
         {/* main setion  */}
         <div
-  className="
-    relative z-10
-    flex flex-col lg:flex-row
-    justify-center lg:justify-between
-    items-center
-    min-h-screen
-    px-6 md:px-10 lg:px-20
-    gap-10 lg:gap-0
-  "
->
+          className="relative z-10 flex flex-col lg:flex-row justify-center lg:justify-between items-center min-h-screen px-6 md:px-10 lg:px-20 gap-10 lg:gap-0">
           <div
-  className="
-    w-full lg:w-1/2
-    flex flex-col
-    items-center lg:items-start
-    text-center lg:text-left
-  "
->
+            className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
             <img
-  src="/Coder.png"
-  alt="coder image"
-  className="
-    w-[220px]
-    sm:w-[280px]
-    md:w-[350px]
-    lg:w-[350px]
-    xl:w-[350px]
-    object-contain
-  "
-/>
-           <p
-  className="
-    text-primary
-    text-4xl
-    sm:text-5xl
-    md:text-6xl
-    lg:text-7xl
-    font-bold
-    uppercase
-    tracking-[3px]
-    md:tracking-[6px]
-  "
->
+              src="/Coder.png"
+              alt="coder image"
+              className="w-[220px] sm:w-[280px] md:w-[350px] lg:w-[350px] xl:w-[350px] object-contain" />
+            <p
+              className="text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-[3px] md:tracking-[6px]">
               Full Stack <br /> <span className="text-4xl md:text-6xl">Developer</span>
             </p>
 
             <h1
-  className="
-    text-lg
-    sm:text-2xl
-    md:text-3xl
-    lg:text-4xl
-    font-black
-    leading-tight
-    max-w-xl
-    mt-4
-  "
-  style={{ fontFamily: "Arizonia" }}
->
+              className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-black leading-tight max-w-xl mt-4"
+              style={{ fontFamily: "Arizonia" }}>
               Helping Startups Turn Ideas Into Reality
             </h1>
-
           </div>
-          <div
-  className="
-    w-full
-    lg:w-auto
-    flex
-    flex-col
-    items-center
-  "
->
-
-           <div
-  className="
-    grid
-    grid-cols-2
-    gap-4
-    w-full
-    max-w-md
-    border-b
-    border-slate-300/20
-    pb-6
-  "
->
-
+          <div className="w-full lg:w-auto flex flex-col items-center">
+            <div className="grid grid-cols-2 gap-4 w-full max-w-md border-b border-slate-300/20 pb-6">
               <GlassCard >
                 <h3>15+</h3>
                 <p>Projects</p>
@@ -259,43 +250,36 @@ export default function Home() {
 
             </div>
             <p
-  className="
-    max-w-md
-    mt-6
-    text-sm
-    sm:text-base
-    md:text-lg
-    text-slate-400
-    text-center
-  "
->
+              className="max-w-md mt-6 text-sm sm:text-base md:text-lg text-slate-400 text-center">
               MERN Stack Developer focused on building modern web applications, AI tools and scalable software solutions.
             </p>
-            <button
+            <motion.button
               onClick={() => {
                 document
                   .getElementById("contact")
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="
-  px-6
-  py-3
-  mt-6
-  rounded-full
-  font-medium
-  bg-white/10
-  backdrop-blur-xl
-  border
-  border-white/10
-  text-white
-  hover:bg-white/20
-  transition-all
-"
-            >
-              Contact Me
-            </button>
+              initial="initial"
+              whileHover="hover"
+              whileTap={{ scale: 0.96 }}
+              className="group px-6 py-3 mt-6 rounded-full font-medium bg-white/10 backdrop-blur-xl border border-white/10 text-white hover:bg-white/20 transition-all duration-300 overflow-hidden">
+              <span className="flex">
+                {"Contact Me".split("").map((letter, index) => (
+                  <motion.span
+                    key={index}
+                    custom={index}
+                    variants={buttonLetterVariants}
+                    className="inline-block"
+                    style={{
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    {letter === " " ? "\u00A0" : letter}
+                  </motion.span>
+                ))}
+              </span>
+            </motion.button>
           </div>
-
         </div>
       </section>
     </div>
