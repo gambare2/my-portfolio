@@ -223,7 +223,14 @@ function Certificate() {
         </Typography>
 
         <Divider sx={{ width: 140, mx: "auto", mt: 2, mb: 4, borderColor: "blue" }} />
+        <div className=" w-2/3 mx-auto relative overflow-hidden rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl mb-6">
+          <img
+            src="https://github-readme-activity-graph.vercel.app/graph?username=gambare2&theme=tokyo-night&hide_border=true&area=true"
+            className="w-full"
+          />
 
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-cyan-500/10 via-transparent to-purple-500/10" />
+        </div>
         <Stack
           direction={{ xs: "column", md: "row" }}
           spacing={4}
@@ -246,6 +253,7 @@ function Certificate() {
             style={{ borderRadius: 12 }}
           />
         </Stack>
+
       </Box>
     </Box>
   );
